@@ -1,0 +1,53 @@
+---
+swagger: "2.0"
+info:
+  x-ibm-name: "say-hello"
+  title: "Say Hello"
+  version: "1.0.0"
+schemes:
+- "https"
+host: "$(catalog.host)"
+basePath: "/say-hello"
+produces:
+- "application/json"
+securityDefinitions: {}
+security: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  assembly:
+    execute:
+    - map:
+        title: "map"
+        inputs: {}
+        outputs:
+          output:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  name: "message"
+            variable: "message.body"
+            content: "application/json"
+        actions:
+        - set: "output.message"
+          value: "'hello code2blog users'"
+        version: "1.0.0"
+  phase: "realized"
+paths:
+  /code2blog:
+    get:
+      responses:
+        200:
+          description: "200 OK"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+definitions: {}
+tags: []
+consumes:
+- "application/json"
