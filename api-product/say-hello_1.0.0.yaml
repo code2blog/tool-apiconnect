@@ -11,13 +11,17 @@ basePath: "/say-hello"
 produces:
 - "application/json"
 securityDefinitions:
-  api-key:
+  clientIdHeader:
     type: "apiKey"
-    description: ""
     in: "header"
     name: "X-IBM-Client-Id"
+  clientSecretHeader:
+    type: "apiKey"
+    in: "header"
+    name: "X-IBM-Client-Secret"
 security:
-- api-key: []
+- clientIdHeader: []
+- clientSecretHeader: []
 x-ibm-configuration:
   testable: true
   enforced: true
