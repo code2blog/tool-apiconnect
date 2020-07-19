@@ -1,0 +1,23 @@
+---
+product: "1.0.0"
+info:
+  name: "say-hello-product"
+  title: "Say Hello product"
+  version: "1.0.0"
+visibility:
+  view:
+    enabled: true
+    type: "public"
+    tags: []
+    orgs: []
+  subscribe:
+    enabled: true
+    type: "authenticated"
+    tags: []
+    orgs: []
+apis:
+  say-hello:
+    $ref: "say-hello_1.0.0.yaml"
+plans:
+  default:
+    title: "Default Plan"
