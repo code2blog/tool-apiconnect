@@ -6,5 +6,6 @@ Here are some of the projects in this repository
 
 api/say-hello_1.0.0
 	sh1 when a get method is invoked on the api, greet the client with hello 
+	sh2 secure your api with rate limits and client credentials
 	
 </pre>

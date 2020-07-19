@@ -21,3 +21,10 @@ apis:
 plans:
   default:
     title: "Default Plan"
+    rate-limits:
+      rate-limit:
+        hard-limit: true
+        value: "60/1hour"
+    burst-limits:
+      burst-limit:
+        value: "3/1minute"

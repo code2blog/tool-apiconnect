@@ -10,8 +10,14 @@ host: "$(catalog.host)"
 basePath: "/say-hello"
 produces:
 - "application/json"
-securityDefinitions: {}
-security: []
+securityDefinitions:
+  api-key:
+    type: "apiKey"
+    description: ""
+    in: "header"
+    name: "X-IBM-Client-Id"
+security:
+- api-key: []
 x-ibm-configuration:
   testable: true
   enforced: true
