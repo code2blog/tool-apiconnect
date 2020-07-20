@@ -21,7 +21,7 @@ securityDefinitions:
     name: "X-IBM-Client-Secret"
 security:
 - clientIdHeader: []
-- clientSecretHeader: []
+  clientSecretHeader: []
 x-ibm-configuration:
   testable: true
   enforced: true
