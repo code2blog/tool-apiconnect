@@ -1,0 +1,2985 @@
+---
+swagger: "2.0"
+info:
+  title: "weather xml"
+  description: ""
+  x-ibm-name: "weather-xml"
+  version: "1.0.0"
+schemes:
+- "https"
+basePath: "/graphical-weather"
+produces:
+- "application/json"
+consumes:
+- "text/xml"
+securityDefinitions:
+  clientID:
+    type: "apiKey"
+    name: "X-IBM-Client-Id"
+    in: "header"
+    description: ""
+security:
+- clientID: []
+x-ibm-configuration:
+  type: "wsdl"
+  phase: "realized"
+  enforced: true
+  testable: true
+  gateway: "datapower-gateway"
+  cors:
+    enabled: true
+  wsdl-definition:
+    wsdl: "https://graphical.weather.gov/xml/SOAP_server/ndfdXMLserver.php?wsdl"
+    service: "ndfdXML"
+    port: "ndfdXMLPort"
+    soap-version: "1.1"
+  assembly:
+    execute:
+    - proxy:
+        title: "proxy"
+        timeout: 60
+        verb: "keep"
+        cache-response: "protocol"
+        cache-ttl: 900
+        version: "1.0.0"
+        target-url: "https://graphical.weather.gov/xml/SOAP_server/ndfdXMLserver.php"
+  x-ibm-apiconnect-wsdl:
+    package-version: "1.8.31"
+    options: {}
+    messages:
+      info: []
+      warning:
+      - message: "An unanticipated encoding iso-8859-1 was found in file internal.wsdl.\
+          \ This is a violation of a WS-I Rule (R4003 A DESCRIPTION MUST use either\
+          \ UTF-8 or UTF-16 encoding.).  Processing continues."
+      error:
+      - message: "The 'use=encoded' attribute setting is ignored on wsdl 'operation'\
+          \ NDFDgen. This is a violation of a WS-I Rule (R2706 A wsdl:binding in a\
+          \ DESCRIPTION MUST use the value of \"literal\" for the use attribute in\
+          \ all wsoap11:body, wsoap11:fault, wsoap11:header and wsoap11:headerfault\
+          \ elements)."
+      - message: "The 'use=encoded' attribute setting is ignored on wsdl 'operation'\
+          \ NDFDgenLatLonList. This is a violation of a WS-I Rule (R2706 A wsdl:binding\
+          \ in a DESCRIPTION MUST use the value of \"literal\" for the use attribute\
+          \ in all wsoap11:body, wsoap11:fault, wsoap11:header and wsoap11:headerfault\
+          \ elements)."
+      - message: "The 'use=encoded' attribute setting is ignored on wsdl 'operation'\
+          \ LatLonListSubgrid. This is a violation of a WS-I Rule (R2706 A wsdl:binding\
+          \ in a DESCRIPTION MUST use the value of \"literal\" for the use attribute\
+          \ in all wsoap11:body, wsoap11:fault, wsoap11:header and wsoap11:headerfault\
+          \ elements)."
+      - message: "The 'use=encoded' attribute setting is ignored on wsdl 'operation'\
+          \ LatLonListLine. This is a violation of a WS-I Rule (R2706 A wsdl:binding\
+          \ in a DESCRIPTION MUST use the value of \"literal\" for the use attribute\
+          \ in all wsoap11:body, wsoap11:fault, wsoap11:header and wsoap11:headerfault\
+          \ elements)."
+      - message: "The 'use=encoded' attribute setting is ignored on wsdl 'operation'\
+          \ LatLonListZipCode. This is a violation of a WS-I Rule (R2706 A wsdl:binding\
+          \ in a DESCRIPTION MUST use the value of \"literal\" for the use attribute\
+          \ in all wsoap11:body, wsoap11:fault, wsoap11:header and wsoap11:headerfault\
+          \ elements)."
+      - message: "The 'use=encoded' attribute setting is ignored on wsdl 'operation'\
+          \ LatLonListCityNames. This is a violation of a WS-I Rule (R2706 A wsdl:binding\
+          \ in a DESCRIPTION MUST use the value of \"literal\" for the use attribute\
+          \ in all wsoap11:body, wsoap11:fault, wsoap11:header and wsoap11:headerfault\
+          \ elements)."
+      - message: "The 'use=encoded' attribute setting is ignored on wsdl 'operation'\
+          \ LatLonListSquare. This is a violation of a WS-I Rule (R2706 A wsdl:binding\
+          \ in a DESCRIPTION MUST use the value of \"literal\" for the use attribute\
+          \ in all wsoap11:body, wsoap11:fault, wsoap11:header and wsoap11:headerfault\
+          \ elements)."
+      - message: "The 'use=encoded' attribute setting is ignored on wsdl 'operation'\
+          \ CornerPoints. This is a violation of a WS-I Rule (R2706 A wsdl:binding\
+          \ in a DESCRIPTION MUST use the value of \"literal\" for the use attribute\
+          \ in all wsoap11:body, wsoap11:fault, wsoap11:header and wsoap11:headerfault\
+          \ elements)."
+      - message: "The 'use=encoded' attribute setting is ignored on wsdl 'operation'\
+          \ GmlLatLonList. This is a violation of a WS-I Rule (R2706 A wsdl:binding\
+          \ in a DESCRIPTION MUST use the value of \"literal\" for the use attribute\
+          \ in all wsoap11:body, wsoap11:fault, wsoap11:header and wsoap11:headerfault\
+          \ elements)."
+      - message: "The 'use=encoded' attribute setting is ignored on wsdl 'operation'\
+          \ GmlTimeSeries. This is a violation of a WS-I Rule (R2706 A wsdl:binding\
+          \ in a DESCRIPTION MUST use the value of \"literal\" for the use attribute\
+          \ in all wsoap11:body, wsoap11:fault, wsoap11:header and wsoap11:headerfault\
+          \ elements)."
+      - message: "The 'use=encoded' attribute setting is ignored on wsdl 'operation'\
+          \ NDFDgenByDay. This is a violation of a WS-I Rule (R2706 A wsdl:binding\
+          \ in a DESCRIPTION MUST use the value of \"literal\" for the use attribute\
+          \ in all wsoap11:body, wsoap11:fault, wsoap11:header and wsoap11:headerfault\
+          \ elements)."
+      - message: "The 'use=encoded' attribute setting is ignored on wsdl 'operation'\
+          \ NDFDgenByDayLatLonList. This is a violation of a WS-I Rule (R2706 A wsdl:binding\
+          \ in a DESCRIPTION MUST use the value of \"literal\" for the use attribute\
+          \ in all wsoap11:body, wsoap11:fault, wsoap11:header and wsoap11:headerfault\
+          \ elements)."
+paths:
+  /NDFDgen:
+    post:
+      summary: "Operation NDFDgen"
+      description: "Returns National Weather Service digital weather forecast data.\
+        \  Supports latitudes and longitudes for the Continental United States, Alaska,\
+        \ Hawaii, Guam, and Puerto Rico only. Allowable values for the input variable\
+        \ \"product\" are \"time-series\" and \"glance\". Allowable values for the\
+        \ input variable \"Unit\" are \"e\" for U.S. Standare/English units and \"\
+        m\" for Metric units. For both products, a start and end time (Local) are\
+        \ required.  For the time-series product, the input variable \"weatherParameters\"\
+        \ has array elements set to \"true\" to indicate which weather parameters\
+        \ are being requested.  If an array element is set to \"false\", data for\
+        \ that weather parameter are not to be returned."
+      operationId: "NDFDgen"
+      x-ibm-soap:
+        soap-action: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#NDFDgen"
+        soap-operation: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}NDFDgen"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/NDFDgenInput"
+      responses:
+        default:
+          description: ""
+          schema:
+            $ref: "#/definitions/NDFDgenOutput"
+  /NDFDgenLatLonList:
+    post:
+      summary: "Operation NDFDgenLatLonList"
+      description: "Returns National Weather Service digital weather forecast data.\
+        \  Supports latitudes and longitudes for the Continental United States, Alaska,\
+        \ Hawaii, Guam, and Puerto Rico only.  The latitude and longitude are delimited\
+        \ by a comma and multiple pairs are delimited by a space (i.e. 30.00,-77.00\
+        \ 40.00,-90.00). Allowable values for the input variable \"product\" are \"\
+        time-series\" and \"glance\". Allowable values for the input variable \"Unit\"\
+        \ are \"e\" for U.S. Standare/English units and \"m\" for Metric units. For\
+        \ both products, a start and end time (Local) are required. For both products,\
+        \ a start and end time (Local) are required.  For the time-series product,\
+        \ the input variable \"weatherParameters\" has array elements set to \"true\"\
+        \ to indicate which weather parameters are being requested.  If an array element\
+        \ is set to \"false\", data for that weather parameter are not to be returned."
+      operationId: "NDFDgenLatLonList"
+      x-ibm-soap:
+        soap-action: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#NDFDgenLatLonList"
+        soap-operation: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}NDFDgenLatLonList"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/NDFDgenLatLonListInput"
+      responses:
+        default:
+          description: ""
+          schema:
+            $ref: "#/definitions/NDFDgenLatLonListOutput"
+  /LatLonListSubgrid:
+    post:
+      summary: "Operation LatLonListSubgrid"
+      description: "Returns a list of Latitude and longitude pairs for a rectangle\
+        \ defined by its lower left and upper right points.  Provides points in a\
+        \ format suitable for use in calling multi-point functions NDFDgenLatLonList\
+        \ and NDFDgenByDayLatLonList.  Supports latitudes and longitudes for the Continental\
+        \ United States, Alaska, Hawaii, Guam, and Puerto Rico."
+      operationId: "LatLonListSubgrid"
+      x-ibm-soap:
+        soap-action: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#LatLonListSubgrid"
+        soap-operation: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}LatLonListSubgrid"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/LatLonListSubgridInput"
+      responses:
+        default:
+          description: ""
+          schema:
+            $ref: "#/definitions/LatLonListSubgridOutput"
+  /LatLonListLine:
+    post:
+      summary: "Operation LatLonListLine"
+      description: "Returns a list of latitude and longitude pairs along a line defined\
+        \ by two points.  Supports latitudes and longitudes for the Continental United\
+        \ States, Alaska, Hawaii, Guam, and Puerto Rico only.  Provides points in\
+        \ a format suitable for use in calling multi-point functions NDFDgenLatLonList\
+        \ and NDFDgenByDayLatLonList."
+      operationId: "LatLonListLine"
+      x-ibm-soap:
+        soap-action: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#LatLonListLine"
+        soap-operation: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}LatLonListLine"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/LatLonListLineInput"
+      responses:
+        default:
+          description: ""
+          schema:
+            $ref: "#/definitions/LatLonListLineOutput"
+  /LatLonListZipCode:
+    post:
+      summary: "Operation LatLonListZipCode"
+      description: "Returns the latitude and longitude pairs corresponding to a list\
+        \ of one or more zip codes.  Supports zip codes for the Continental United\
+        \ States, Alaska, Hawaii, and Puerto Rico only. Provides points in a format\
+        \ suitable for use in calling multi-point functions NDFDgenLatLonList and\
+        \ NDFDgenByDayLatLonList."
+      operationId: "LatLonListZipCode"
+      x-ibm-soap:
+        soap-action: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#LatLonListZipCode"
+        soap-operation: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}LatLonListZipCode"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/LatLonListZipCodeInput"
+      responses:
+        default:
+          description: ""
+          schema:
+            $ref: "#/definitions/LatLonListZipCodeOutput"
+  /LatLonListCityNames:
+    post:
+      summary: "Operation LatLonListCityNames"
+      description: "Returns the latitude and longitude pairs corresponding to a predefined\
+        \ list of US cities.  Provides points in a format suitable for use in calling\
+        \ multi-point functions NDFDgenLatLonList and NDFDgenByDayLatLonList.  The\
+        \ response also includes a list of city names with the order of the names\
+        \ matching the order of the corresponding point."
+      operationId: "LatLonListCityNames"
+      x-ibm-soap:
+        soap-action: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#LatLonListCityNames"
+        soap-operation: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}LatLonListCityNames"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/LatLonListCityNamesInput"
+      responses:
+        default:
+          description: ""
+          schema:
+            $ref: "#/definitions/LatLonListCityNamesOutput"
+  /LatLonListSquare:
+    post:
+      summary: "Operation LatLonListSquare"
+      description: "Returns a list of latitude and longitude pairs in a rectangle\
+        \ defined by a central point and distance from that point in the latitudinal\
+        \ and longitudinal directions.  Supports latitudes and longitudes for the\
+        \ Continental United States, Alaska, Hawaii, Guam, and Puerto Rico only. \
+        \ Provides points in a format suitable for use in calling multi-point functions\
+        \ NDFDgenLatLonList and NDFDgenByDayLatLonList."
+      operationId: "LatLonListSquare"
+      x-ibm-soap:
+        soap-action: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#LatLonListSquare"
+        soap-operation: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}LatLonListSquare"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/LatLonListSquareInput"
+      responses:
+        default:
+          description: ""
+          schema:
+            $ref: "#/definitions/LatLonListSquareOutput"
+  /CornerPoints:
+    post:
+      summary: "Operation CornerPoints"
+      description: "Returns latitude and longitude pairs of the four corners of an\
+        \ NDFD grid.  Provides points in a format suitable for use in calling multi-point\
+        \ functions NDFDgenLatLonList and NDFDgenByDayLatLonList.  Supports latitudes\
+        \ and longitudes for the Continental United States, Hawaii, Guam, and Puerto\
+        \ Rico only.  Also provides a minimum resolution for requesting the grid."
+      operationId: "CornerPoints"
+      x-ibm-soap:
+        soap-action: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#CornerPoints"
+        soap-operation: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}CornerPoints"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/CornerPointsInput"
+      responses:
+        default:
+          description: ""
+          schema:
+            $ref: "#/definitions/CornerPointsOutput"
+  /GmlLatLonList:
+    post:
+      summary: "Operation GmlLatLonList"
+      description: "Returns National Weather Service digital weather forecast data\
+        \ encoded in GML.  Supports latitudes and longitudes for the Continental United\
+        \ States, Alaska, Hawaii, Guam, and Puerto Rico only.  The latitude and longitude\
+        \ are delimited by a comma and multiple pairs are delimited by a space (i.e.\
+        \ 30.00,-77.00 40.00,-90.00). Allowable values for the input variable \"featureType\"\
+        \ are \"Forecast_Gml2Point\", \"Forecast_GmlObs\", \"NdfdMultiPointCoverage\"\
+        , \"Ndfd_KmlPoint\", and \"Forecast_GmlsfPoint\".  For all feature types a\
+        \ time (UTC) is required to indicate when data is requested.  The input variable\
+        \ \"weatherParameters\" has array elements set to \"true\" to indicate which\
+        \ weather parameters are being requested.  If an array element is set to \"\
+        false\", data for that weather parameter are not to be returned."
+      operationId: "GmlLatLonList"
+      x-ibm-soap:
+        soap-action: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#GmlLatLonList"
+        soap-operation: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}GmlLatLonList"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/GmlLatLonListInput"
+      responses:
+        default:
+          description: ""
+          schema:
+            $ref: "#/definitions/GmlLatLonListOutput"
+  /GmlTimeSeries:
+    post:
+      summary: "Operation GmlTimeSeries"
+      description: "Returns National Weather Service digital weather forecast data\
+        \ encoded in GML.  Supports latitudes and longitudes for the Continental United\
+        \ States, Alaska, Hawaii, Guam, and Puerto Rico only.  The latitude and longitude\
+        \ are delimited by a comma and multiple pairs are delimited by a space (i.e.\
+        \ 30.00,-77.00 40.00,-90.00). Allowable values for the input variable \"featureType\"\
+        \ are \"Forecast_Gml2Point\", \"Forecast_GmlObs\", \"NdfdMultiPointCoverage\"\
+        , \"Ndfd_KmlPoint\", and \"Forecast_GmlsfPoint\".  For all feature types a\
+        \ start and end time (UTC) is required to indicate when data is requested.\
+        \  a comparison type (IsEqual, Between, GreaterThan, GreaterThan, GreaterThanEqualTo,\
+        \ LessThan, and  LessThanEqualTo). The input variable \"propertyName\" contains\
+        \ a comma delimited string of NDFD element to indicate which weather parameters\
+        \ are being requested."
+      operationId: "GmlTimeSeries"
+      x-ibm-soap:
+        soap-action: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#GmlTimeSeries"
+        soap-operation: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}GmlTimeSeries"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/GmlTimeSeriesInput"
+      responses:
+        default:
+          description: ""
+          schema:
+            $ref: "#/definitions/GmlTimeSeriesOutput"
+  /NDFDgenByDay:
+    post:
+      summary: "Operation NDFDgenByDay"
+      description: "Returns National Weather Service digital weather forecast data.\
+        \  Supports latitudes and longitudes for the Continental United States, Hawaii,\
+        \ Guam, and Puerto Rico only.  Allowable values for the input variable \"\
+        format\" are \"24 hourly\" and \"12 hourly\".  The input variable \"startDate\"\
+        \ is a date string representing the first day (Local) of data to be returned.\
+        \ The input variable \"numDays\" is the integer number of days for which the\
+        \ user wants data. Allowable values for the input variable \"Unit\" are \"\
+        e\" for U.S. Standare/English units and \"m\" for Metric units."
+      operationId: "NDFDgenByDay"
+      x-ibm-soap:
+        soap-action: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#NDFDgenByDay"
+        soap-operation: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}NDFDgenByDay"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/NDFDgenByDayInput"
+      responses:
+        default:
+          description: ""
+          schema:
+            $ref: "#/definitions/NDFDgenByDayOutput"
+  /NDFDgenByDayLatLonList:
+    post:
+      summary: "Operation NDFDgenByDayLatLonList"
+      description: "Returns National Weather Service digital weather forecast data.\
+        \  Supports latitudes and longitudes for the Continental United States, Hawaii,\
+        \ Guam, and Puerto Rico only.  The latitude and longitude are delimited by\
+        \ a comma and multiple pairs are delimited by a space (i.e. 30.00,-77.00 40.00,-90.00).\
+        \ Allowable values for the input variable \"format\" are \"24 hourly\" and\
+        \ \"12 hourly\".  The input variable \"startDate\" is a date string representing\
+        \ the first day (Local) of data to be returned. The input variable \"numDays\"\
+        \ is the integer number of days for which the user wants data. Allowable values\
+        \ for the input variable \"Unit\" are \"e\" for U.S. Standare/English units\
+        \ and \"m\" for Metric units."
+      operationId: "NDFDgenByDayLatLonList"
+      x-ibm-soap:
+        soap-action: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#NDFDgenByDayLatLonList"
+        soap-operation: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}NDFDgenByDayLatLonList"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/NDFDgenByDayLatLonListInput"
+      responses:
+        default:
+          description: ""
+          schema:
+            $ref: "#/definitions/NDFDgenByDayLatLonListOutput"
+definitions:
+  Security:
+    xml:
+      namespace: "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+      prefix: "wsse"
+    description: "Header for WS-Security"
+    type: "object"
+    properties:
+      UsernameToken:
+        xml:
+          namespace: "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+          prefix: "wsse"
+        type: "object"
+        properties:
+          Username:
+            xml:
+              namespace: "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+              prefix: "wsse"
+            type: "string"
+          Password:
+            xml:
+              namespace: "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+              prefix: "wsse"
+            type: "string"
+          Nonce:
+            xml:
+              namespace: "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+              prefix: "wsse"
+            type: "string"
+            properties:
+              EncodingType:
+                xml:
+                  namespace: ""
+                  attribute: true
+                type: "string"
+          Created:
+            xml:
+              namespace: "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+              prefix: "wsu"
+            type: "string"
+      Timestamp:
+        xml:
+          namespace: "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+          prefix: "wsu"
+        type: "object"
+        properties:
+          Created:
+            xml:
+              namespace: "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+              prefix: "wsu"
+            type: "string"
+          Expires:
+            xml:
+              namespace: "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+              prefix: "wsu"
+            type: "string"
+          Id:
+            xml:
+              namespace: "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+              prefix: "wsu"
+              attribute: true
+            type: "string"
+  NDFDgenInput:
+    description: "Input message for wsdl operation NDFDgen"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Header:
+            $ref: "#/definitions/NDFDgenHeader"
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              NDFDgen:
+                $ref: "#/definitions/NDFDgenRequest_tns"
+            required:
+            - "NDFDgen"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "NDFDgen"
+      wsdl-message-direction-or-name: "NDFDgenRequest"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Header>\n  <!-- The Security element should be removed if WS-Security\
+      \ is not enabled on the SOAP target-url -->\n  <wsse:Security xmlns:wsse=\"\
+      http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\
+      \ xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+      >\n   <wsse:UsernameToken>\n    <wsse:Username>string</wsse:Username>\n    <wsse:Password>string</wsse:Password>\n\
+      \    <wsse:Nonce EncodingType=\"string\">string</wsse:Nonce>\n    <wsu:Created>string</wsu:Created>\n\
+      \   </wsse:UsernameToken>\n   <wsu:Timestamp wsu:Id=\"string\">\n    <wsu:Created>string</wsu:Created>\n\
+      \    <wsu:Expires>string</wsu:Expires>\n   </wsu:Timestamp>\n  </wsse:Security>\n\
+      \ </soapenv:Header>\n <soapenv:Body>\n  <tns:NDFDgen xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      ><!-- mandatory -->\n   <tns:latitude>3</tns:latitude>\n   <tns:longitude>3</tns:longitude>\n\
+      \   <tns:product>string</tns:product>\n   <tns:startTime>2016-04-18T14:07:37</tns:startTime>\n\
+      \   <tns:endTime>2016-04-18T14:07:37</tns:endTime>\n   <tns:Unit>string</tns:Unit>\n\
+      \   <weatherParameters>\n    <maxt><!-- mandatory -->true</maxt>\n    <mint><!--\
+      \ mandatory -->true</mint>\n    <temp><!-- mandatory -->true</temp>\n    <dew><!--\
+      \ mandatory -->true</dew>\n    <pop12><!-- mandatory -->true</pop12>\n    <qpf><!--\
+      \ mandatory -->true</qpf>\n    <sky><!-- mandatory -->true</sky>\n    <snow><!--\
+      \ mandatory -->true</snow>\n    <wspd><!-- mandatory -->true</wspd>\n    <wdir><!--\
+      \ mandatory -->true</wdir>\n    <wx><!-- mandatory -->true</wx>\n    <waveh><!--\
+      \ mandatory -->true</waveh>\n    <icons><!-- mandatory -->true</icons>\n   \
+      \ <rh><!-- mandatory -->true</rh>\n    <appt><!-- mandatory -->true</appt>\n\
+      \    <incw34><!-- mandatory -->true</incw34>\n    <incw50><!-- mandatory -->true</incw50>\n\
+      \    <incw64><!-- mandatory -->true</incw64>\n    <cumw34><!-- mandatory -->true</cumw34>\n\
+      \    <cumw50><!-- mandatory -->true</cumw50>\n    <cumw64><!-- mandatory -->true</cumw64>\n\
+      \    <critfireo><!-- mandatory -->true</critfireo>\n    <dryfireo><!-- mandatory\
+      \ -->true</dryfireo>\n    <conhazo><!-- mandatory -->true</conhazo>\n    <ptornado><!--\
+      \ mandatory -->true</ptornado>\n    <phail><!-- mandatory -->true</phail>\n\
+      \    <ptstmwinds><!-- mandatory -->true</ptstmwinds>\n    <pxtornado><!-- mandatory\
+      \ -->true</pxtornado>\n    <pxhail><!-- mandatory -->true</pxhail>\n    <pxtstmwinds><!--\
+      \ mandatory -->true</pxtstmwinds>\n    <ptotsvrtstm><!-- mandatory -->true</ptotsvrtstm>\n\
+      \    <pxtotsvrtstm><!-- mandatory -->true</pxtotsvrtstm>\n    <tmpabv14d><!--\
+      \ mandatory -->true</tmpabv14d>\n    <tmpblw14d><!-- mandatory -->true</tmpblw14d>\n\
+      \    <tmpabv30d><!-- mandatory -->true</tmpabv30d>\n    <tmpblw30d><!-- mandatory\
+      \ -->true</tmpblw30d>\n    <tmpabv90d><!-- mandatory -->true</tmpabv90d>\n \
+      \   <tmpblw90d><!-- mandatory -->true</tmpblw90d>\n    <prcpabv14d><!-- mandatory\
+      \ -->true</prcpabv14d>\n    <prcpblw14d><!-- mandatory -->true</prcpblw14d>\n\
+      \    <prcpabv30d><!-- mandatory -->true</prcpabv30d>\n    <prcpblw30d><!-- mandatory\
+      \ -->true</prcpblw30d>\n    <prcpabv90d><!-- mandatory -->true</prcpabv90d>\n\
+      \    <prcpblw90d><!-- mandatory -->true</prcpblw90d>\n    <precipa_r><!-- mandatory\
+      \ -->true</precipa_r>\n    <sky_r><!-- mandatory -->true</sky_r>\n    <temp_r><!--\
+      \ mandatory -->true</temp_r>\n    <td_r><!-- mandatory -->true</td_r>\n    <wdir_r><!--\
+      \ mandatory -->true</wdir_r>\n    <wspd_r><!-- mandatory -->true</wspd_r>\n\
+      \    <!-- Number of properties exceeds 50, truncated example -->\n   </weatherParameters>\n\
+      \  </tns:NDFDgen>\n </soapenv:Body>\n</soapenv:Envelope>"
+  NDFDgenHeader:
+    description: "Input headers for wsdl operation NDFDgen"
+    type: "object"
+    properties:
+      Security:
+        $ref: "#/definitions/Security"
+  NDFDgenOutput:
+    description: "Output message for wsdl operation NDFDgen"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              NDFDgenResponse:
+                $ref: "#/definitions/NDFDgenResponse_tns"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "NDFDgen"
+      wsdl-message-direction-or-name: "NDFDgenResponse"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Body>\n  <tns:NDFDgenResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n   <tns:dwmlOut>string</tns:dwmlOut>\n  </tns:NDFDgenResponse>\n </soapenv:Body>\n\
+      </soapenv:Envelope>"
+  NDFDgenLatLonListInput:
+    description: "Input message for wsdl operation NDFDgenLatLonList"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Header:
+            $ref: "#/definitions/NDFDgenLatLonListHeader"
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              NDFDgenLatLonList:
+                $ref: "#/definitions/NDFDgenLatLonListRequest_tns"
+            required:
+            - "NDFDgenLatLonList"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "NDFDgenLatLonList"
+      wsdl-message-direction-or-name: "NDFDgenLatLonListRequest"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Header>\n  <!-- The Security element should be removed if WS-Security\
+      \ is not enabled on the SOAP target-url -->\n  <wsse:Security xmlns:wsse=\"\
+      http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\
+      \ xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+      >\n   <wsse:UsernameToken>\n    <wsse:Username>string</wsse:Username>\n    <wsse:Password>string</wsse:Password>\n\
+      \    <wsse:Nonce EncodingType=\"string\">string</wsse:Nonce>\n    <wsu:Created>string</wsu:Created>\n\
+      \   </wsse:UsernameToken>\n   <wsu:Timestamp wsu:Id=\"string\">\n    <wsu:Created>string</wsu:Created>\n\
+      \    <wsu:Expires>string</wsu:Expires>\n   </wsu:Timestamp>\n  </wsse:Security>\n\
+      \ </soapenv:Header>\n <soapenv:Body>\n  <tns:NDFDgenLatLonList xmlns:tns=\"\
+      https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"><!-- mandatory\
+      \ -->\n   <tns:listLatLon>string</tns:listLatLon>\n   <tns:product>string</tns:product>\n\
+      \   <tns:startTime>2016-04-18T14:07:37</tns:startTime>\n   <tns:endTime>2016-04-18T14:07:37</tns:endTime>\n\
+      \   <tns:Unit>string</tns:Unit>\n   <weatherParameters>\n    <maxt><!-- mandatory\
+      \ -->true</maxt>\n    <mint><!-- mandatory -->true</mint>\n    <temp><!-- mandatory\
+      \ -->true</temp>\n    <dew><!-- mandatory -->true</dew>\n    <pop12><!-- mandatory\
+      \ -->true</pop12>\n    <qpf><!-- mandatory -->true</qpf>\n    <sky><!-- mandatory\
+      \ -->true</sky>\n    <snow><!-- mandatory -->true</snow>\n    <wspd><!-- mandatory\
+      \ -->true</wspd>\n    <wdir><!-- mandatory -->true</wdir>\n    <wx><!-- mandatory\
+      \ -->true</wx>\n    <waveh><!-- mandatory -->true</waveh>\n    <icons><!-- mandatory\
+      \ -->true</icons>\n    <rh><!-- mandatory -->true</rh>\n    <appt><!-- mandatory\
+      \ -->true</appt>\n    <incw34><!-- mandatory -->true</incw34>\n    <incw50><!--\
+      \ mandatory -->true</incw50>\n    <incw64><!-- mandatory -->true</incw64>\n\
+      \    <cumw34><!-- mandatory -->true</cumw34>\n    <cumw50><!-- mandatory -->true</cumw50>\n\
+      \    <cumw64><!-- mandatory -->true</cumw64>\n    <critfireo><!-- mandatory\
+      \ -->true</critfireo>\n    <dryfireo><!-- mandatory -->true</dryfireo>\n   \
+      \ <conhazo><!-- mandatory -->true</conhazo>\n    <ptornado><!-- mandatory -->true</ptornado>\n\
+      \    <phail><!-- mandatory -->true</phail>\n    <ptstmwinds><!-- mandatory -->true</ptstmwinds>\n\
+      \    <pxtornado><!-- mandatory -->true</pxtornado>\n    <pxhail><!-- mandatory\
+      \ -->true</pxhail>\n    <pxtstmwinds><!-- mandatory -->true</pxtstmwinds>\n\
+      \    <ptotsvrtstm><!-- mandatory -->true</ptotsvrtstm>\n    <pxtotsvrtstm><!--\
+      \ mandatory -->true</pxtotsvrtstm>\n    <tmpabv14d><!-- mandatory -->true</tmpabv14d>\n\
+      \    <tmpblw14d><!-- mandatory -->true</tmpblw14d>\n    <tmpabv30d><!-- mandatory\
+      \ -->true</tmpabv30d>\n    <tmpblw30d><!-- mandatory -->true</tmpblw30d>\n \
+      \   <tmpabv90d><!-- mandatory -->true</tmpabv90d>\n    <tmpblw90d><!-- mandatory\
+      \ -->true</tmpblw90d>\n    <prcpabv14d><!-- mandatory -->true</prcpabv14d>\n\
+      \    <prcpblw14d><!-- mandatory -->true</prcpblw14d>\n    <prcpabv30d><!-- mandatory\
+      \ -->true</prcpabv30d>\n    <prcpblw30d><!-- mandatory -->true</prcpblw30d>\n\
+      \    <prcpabv90d><!-- mandatory -->true</prcpabv90d>\n    <prcpblw90d><!-- mandatory\
+      \ -->true</prcpblw90d>\n    <precipa_r><!-- mandatory -->true</precipa_r>\n\
+      \    <sky_r><!-- mandatory -->true</sky_r>\n    <temp_r><!-- mandatory -->true</temp_r>\n\
+      \    <td_r><!-- mandatory -->true</td_r>\n    <wdir_r><!-- mandatory -->true</wdir_r>\n\
+      \    <wspd_r><!-- mandatory -->true</wspd_r>\n    <!-- Number of properties\
+      \ exceeds 50, truncated example -->\n   </weatherParameters>\n  </tns:NDFDgenLatLonList>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  NDFDgenLatLonListHeader:
+    description: "Input headers for wsdl operation NDFDgenLatLonList"
+    type: "object"
+    properties:
+      Security:
+        $ref: "#/definitions/Security"
+  NDFDgenLatLonListOutput:
+    description: "Output message for wsdl operation NDFDgenLatLonList"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              NDFDgenLatLonListResponse:
+                $ref: "#/definitions/NDFDgenLatLonListResponse_tns"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "NDFDgenLatLonList"
+      wsdl-message-direction-or-name: "NDFDgenLatLonListResponse"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Body>\n  <tns:NDFDgenLatLonListResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n   <tns:dwmlOut>string</tns:dwmlOut>\n  </tns:NDFDgenLatLonListResponse>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  LatLonListSubgridInput:
+    description: "Input message for wsdl operation LatLonListSubgrid"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Header:
+            $ref: "#/definitions/LatLonListSubgridHeader"
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              LatLonListSubgrid:
+                $ref: "#/definitions/LatLonListSubgridRequest_tns"
+            required:
+            - "LatLonListSubgrid"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "LatLonListSubgrid"
+      wsdl-message-direction-or-name: "LatLonListSubgridRequest"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Header>\n  <!-- The Security element should be removed if WS-Security\
+      \ is not enabled on the SOAP target-url -->\n  <wsse:Security xmlns:wsse=\"\
+      http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\
+      \ xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+      >\n   <wsse:UsernameToken>\n    <wsse:Username>string</wsse:Username>\n    <wsse:Password>string</wsse:Password>\n\
+      \    <wsse:Nonce EncodingType=\"string\">string</wsse:Nonce>\n    <wsu:Created>string</wsu:Created>\n\
+      \   </wsse:UsernameToken>\n   <wsu:Timestamp wsu:Id=\"string\">\n    <wsu:Created>string</wsu:Created>\n\
+      \    <wsu:Expires>string</wsu:Expires>\n   </wsu:Timestamp>\n  </wsse:Security>\n\
+      \ </soapenv:Header>\n <soapenv:Body>\n  <tns:LatLonListSubgrid xmlns:tns=\"\
+      https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"><!-- mandatory\
+      \ -->\n   <tns:lowerLeftLatitude>3</tns:lowerLeftLatitude>\n   <tns:lowerLeftLongitude>3</tns:lowerLeftLongitude>\n\
+      \   <tns:upperRightLatitude>3</tns:upperRightLatitude>\n   <tns:upperRightLongitude>3</tns:upperRightLongitude>\n\
+      \   <tns:resolution>3</tns:resolution>\n  </tns:LatLonListSubgrid>\n </soapenv:Body>\n\
+      </soapenv:Envelope>"
+  LatLonListSubgridHeader:
+    description: "Input headers for wsdl operation LatLonListSubgrid"
+    type: "object"
+    properties:
+      Security:
+        $ref: "#/definitions/Security"
+  LatLonListSubgridOutput:
+    description: "Output message for wsdl operation LatLonListSubgrid"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              LatLonListSubgridResponse:
+                $ref: "#/definitions/LatLonListSubgridResponse_tns"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "LatLonListSubgrid"
+      wsdl-message-direction-or-name: "LatLonListSubgridResponse"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Body>\n  <tns:LatLonListSubgridResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n   <tns:listLatLonOut>string</tns:listLatLonOut>\n  </tns:LatLonListSubgridResponse>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  LatLonListLineInput:
+    description: "Input message for wsdl operation LatLonListLine"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Header:
+            $ref: "#/definitions/LatLonListLineHeader"
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              LatLonListLine:
+                $ref: "#/definitions/LatLonListLineRequest_tns"
+            required:
+            - "LatLonListLine"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "LatLonListLine"
+      wsdl-message-direction-or-name: "LatLonListLineRequest"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Header>\n  <!-- The Security element should be removed if WS-Security\
+      \ is not enabled on the SOAP target-url -->\n  <wsse:Security xmlns:wsse=\"\
+      http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\
+      \ xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+      >\n   <wsse:UsernameToken>\n    <wsse:Username>string</wsse:Username>\n    <wsse:Password>string</wsse:Password>\n\
+      \    <wsse:Nonce EncodingType=\"string\">string</wsse:Nonce>\n    <wsu:Created>string</wsu:Created>\n\
+      \   </wsse:UsernameToken>\n   <wsu:Timestamp wsu:Id=\"string\">\n    <wsu:Created>string</wsu:Created>\n\
+      \    <wsu:Expires>string</wsu:Expires>\n   </wsu:Timestamp>\n  </wsse:Security>\n\
+      \ </soapenv:Header>\n <soapenv:Body>\n  <tns:LatLonListLine xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      ><!-- mandatory -->\n   <tns:endPoint1Lat>3</tns:endPoint1Lat>\n   <tns:endPoint1Lon>3</tns:endPoint1Lon>\n\
+      \   <tns:endPoint2Lat>3</tns:endPoint2Lat>\n   <tns:endPoint2Lon>3</tns:endPoint2Lon>\n\
+      \  </tns:LatLonListLine>\n </soapenv:Body>\n</soapenv:Envelope>"
+  LatLonListLineHeader:
+    description: "Input headers for wsdl operation LatLonListLine"
+    type: "object"
+    properties:
+      Security:
+        $ref: "#/definitions/Security"
+  LatLonListLineOutput:
+    description: "Output message for wsdl operation LatLonListLine"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              LatLonListLineResponse:
+                $ref: "#/definitions/LatLonListLineResponse_tns"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "LatLonListLine"
+      wsdl-message-direction-or-name: "LatLonListLineResponse"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Body>\n  <tns:LatLonListLineResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n   <tns:listLatLonOut>string</tns:listLatLonOut>\n  </tns:LatLonListLineResponse>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  LatLonListZipCodeInput:
+    description: "Input message for wsdl operation LatLonListZipCode"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Header:
+            $ref: "#/definitions/LatLonListZipCodeHeader"
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              LatLonListZipCode:
+                $ref: "#/definitions/LatLonListZipCodeRequest_tns"
+            required:
+            - "LatLonListZipCode"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "LatLonListZipCode"
+      wsdl-message-direction-or-name: "LatLonListZipCodeRequest"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Header>\n  <!-- The Security element should be removed if WS-Security\
+      \ is not enabled on the SOAP target-url -->\n  <wsse:Security xmlns:wsse=\"\
+      http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\
+      \ xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+      >\n   <wsse:UsernameToken>\n    <wsse:Username>string</wsse:Username>\n    <wsse:Password>string</wsse:Password>\n\
+      \    <wsse:Nonce EncodingType=\"string\">string</wsse:Nonce>\n    <wsu:Created>string</wsu:Created>\n\
+      \   </wsse:UsernameToken>\n   <wsu:Timestamp wsu:Id=\"string\">\n    <wsu:Created>string</wsu:Created>\n\
+      \    <wsu:Expires>string</wsu:Expires>\n   </wsu:Timestamp>\n  </wsse:Security>\n\
+      \ </soapenv:Header>\n <soapenv:Body>\n  <tns:LatLonListZipCode xmlns:tns=\"\
+      https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"><!-- mandatory\
+      \ -->\n   <tns:zipCodeList>string</tns:zipCodeList>\n  </tns:LatLonListZipCode>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  LatLonListZipCodeHeader:
+    description: "Input headers for wsdl operation LatLonListZipCode"
+    type: "object"
+    properties:
+      Security:
+        $ref: "#/definitions/Security"
+  LatLonListZipCodeOutput:
+    description: "Output message for wsdl operation LatLonListZipCode"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              LatLonListZipCodeResponse:
+                $ref: "#/definitions/LatLonListZipCodeResponse_tns"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "LatLonListZipCode"
+      wsdl-message-direction-or-name: "LatLonListZipCodeResponse"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Body>\n  <tns:LatLonListZipCodeResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n   <tns:listLatLonOut>string</tns:listLatLonOut>\n  </tns:LatLonListZipCodeResponse>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  LatLonListCityNamesInput:
+    description: "Input message for wsdl operation LatLonListCityNames"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Header:
+            $ref: "#/definitions/LatLonListCityNamesHeader"
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              LatLonListCityNames:
+                $ref: "#/definitions/LatLonListCityNamesRequest_tns"
+            required:
+            - "LatLonListCityNames"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "LatLonListCityNames"
+      wsdl-message-direction-or-name: "LatLonListCityNamesRequest"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Header>\n  <!-- The Security element should be removed if WS-Security\
+      \ is not enabled on the SOAP target-url -->\n  <wsse:Security xmlns:wsse=\"\
+      http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\
+      \ xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+      >\n   <wsse:UsernameToken>\n    <wsse:Username>string</wsse:Username>\n    <wsse:Password>string</wsse:Password>\n\
+      \    <wsse:Nonce EncodingType=\"string\">string</wsse:Nonce>\n    <wsu:Created>string</wsu:Created>\n\
+      \   </wsse:UsernameToken>\n   <wsu:Timestamp wsu:Id=\"string\">\n    <wsu:Created>string</wsu:Created>\n\
+      \    <wsu:Expires>string</wsu:Expires>\n   </wsu:Timestamp>\n  </wsse:Security>\n\
+      \ </soapenv:Header>\n <soapenv:Body>\n  <tns:LatLonListCityNames xmlns:tns=\"\
+      https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"><!-- mandatory\
+      \ -->\n   <tns:displayLevel>3</tns:displayLevel>\n  </tns:LatLonListCityNames>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  LatLonListCityNamesHeader:
+    description: "Input headers for wsdl operation LatLonListCityNames"
+    type: "object"
+    properties:
+      Security:
+        $ref: "#/definitions/Security"
+  LatLonListCityNamesOutput:
+    description: "Output message for wsdl operation LatLonListCityNames"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              LatLonListCityNamesResponse:
+                $ref: "#/definitions/LatLonListCityNamesResponse_tns"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "LatLonListCityNames"
+      wsdl-message-direction-or-name: "LatLonListCityNamesResponse"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Body>\n  <tns:LatLonListCityNamesResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n   <tns:listLatLonOut>string</tns:listLatLonOut>\n  </tns:LatLonListCityNamesResponse>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  LatLonListSquareInput:
+    description: "Input message for wsdl operation LatLonListSquare"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Header:
+            $ref: "#/definitions/LatLonListSquareHeader"
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              LatLonListSquare:
+                $ref: "#/definitions/LatLonListSquareRequest_tns"
+            required:
+            - "LatLonListSquare"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "LatLonListSquare"
+      wsdl-message-direction-or-name: "LatLonListSquareRequest"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Header>\n  <!-- The Security element should be removed if WS-Security\
+      \ is not enabled on the SOAP target-url -->\n  <wsse:Security xmlns:wsse=\"\
+      http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\
+      \ xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+      >\n   <wsse:UsernameToken>\n    <wsse:Username>string</wsse:Username>\n    <wsse:Password>string</wsse:Password>\n\
+      \    <wsse:Nonce EncodingType=\"string\">string</wsse:Nonce>\n    <wsu:Created>string</wsu:Created>\n\
+      \   </wsse:UsernameToken>\n   <wsu:Timestamp wsu:Id=\"string\">\n    <wsu:Created>string</wsu:Created>\n\
+      \    <wsu:Expires>string</wsu:Expires>\n   </wsu:Timestamp>\n  </wsse:Security>\n\
+      \ </soapenv:Header>\n <soapenv:Body>\n  <tns:LatLonListSquare xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      ><!-- mandatory -->\n   <tns:centerPointLat>3</tns:centerPointLat>\n   <tns:centerPointLon>3</tns:centerPointLon>\n\
+      \   <tns:distanceLat>3</tns:distanceLat>\n   <tns:distanceLon>3</tns:distanceLon>\n\
+      \   <tns:resolution>3</tns:resolution>\n  </tns:LatLonListSquare>\n </soapenv:Body>\n\
+      </soapenv:Envelope>"
+  LatLonListSquareHeader:
+    description: "Input headers for wsdl operation LatLonListSquare"
+    type: "object"
+    properties:
+      Security:
+        $ref: "#/definitions/Security"
+  LatLonListSquareOutput:
+    description: "Output message for wsdl operation LatLonListSquare"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              LatLonListSquareResponse:
+                $ref: "#/definitions/LatLonListSquareResponse_tns"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "LatLonListSquare"
+      wsdl-message-direction-or-name: "LatLonListSquareResponse"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Body>\n  <tns:LatLonListSquareResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n   <tns:listLatLonOut>string</tns:listLatLonOut>\n  </tns:LatLonListSquareResponse>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  CornerPointsInput:
+    description: "Input message for wsdl operation CornerPoints"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Header:
+            $ref: "#/definitions/CornerPointsHeader"
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              CornerPoints:
+                $ref: "#/definitions/CornerPointsRequest_tns"
+            required:
+            - "CornerPoints"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "CornerPoints"
+      wsdl-message-direction-or-name: "CornerPointsRequest"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Header>\n  <!-- The Security element should be removed if WS-Security\
+      \ is not enabled on the SOAP target-url -->\n  <wsse:Security xmlns:wsse=\"\
+      http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\
+      \ xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+      >\n   <wsse:UsernameToken>\n    <wsse:Username>string</wsse:Username>\n    <wsse:Password>string</wsse:Password>\n\
+      \    <wsse:Nonce EncodingType=\"string\">string</wsse:Nonce>\n    <wsu:Created>string</wsu:Created>\n\
+      \   </wsse:UsernameToken>\n   <wsu:Timestamp wsu:Id=\"string\">\n    <wsu:Created>string</wsu:Created>\n\
+      \    <wsu:Expires>string</wsu:Expires>\n   </wsu:Timestamp>\n  </wsse:Security>\n\
+      \ </soapenv:Header>\n <soapenv:Body>\n  <tns:CornerPoints xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      ><!-- mandatory -->\n   <tns:sector>string</tns:sector>\n  </tns:CornerPoints>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  CornerPointsHeader:
+    description: "Input headers for wsdl operation CornerPoints"
+    type: "object"
+    properties:
+      Security:
+        $ref: "#/definitions/Security"
+  CornerPointsOutput:
+    description: "Output message for wsdl operation CornerPoints"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              CornerPointsResponse:
+                $ref: "#/definitions/CornerPointsResponse_tns"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "CornerPoints"
+      wsdl-message-direction-or-name: "CornerPointsResponse"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Body>\n  <tns:CornerPointsResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n   <tns:listLatLonOut>string</tns:listLatLonOut>\n  </tns:CornerPointsResponse>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  GmlLatLonListInput:
+    description: "Input message for wsdl operation GmlLatLonList"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Header:
+            $ref: "#/definitions/GmlLatLonListHeader"
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              GmlLatLonList:
+                $ref: "#/definitions/GmlLatLonListRequest_tns"
+            required:
+            - "GmlLatLonList"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "GmlLatLonList"
+      wsdl-message-direction-or-name: "GmlLatLonListRequest"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Header>\n  <!-- The Security element should be removed if WS-Security\
+      \ is not enabled on the SOAP target-url -->\n  <wsse:Security xmlns:wsse=\"\
+      http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\
+      \ xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+      >\n   <wsse:UsernameToken>\n    <wsse:Username>string</wsse:Username>\n    <wsse:Password>string</wsse:Password>\n\
+      \    <wsse:Nonce EncodingType=\"string\">string</wsse:Nonce>\n    <wsu:Created>string</wsu:Created>\n\
+      \   </wsse:UsernameToken>\n   <wsu:Timestamp wsu:Id=\"string\">\n    <wsu:Created>string</wsu:Created>\n\
+      \    <wsu:Expires>string</wsu:Expires>\n   </wsu:Timestamp>\n  </wsse:Security>\n\
+      \ </soapenv:Header>\n <soapenv:Body>\n  <tns:GmlLatLonList xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      ><!-- mandatory -->\n   <tns:listLatLon>string</tns:listLatLon>\n   <tns:requestedTime>2016-04-18T14:07:37</tns:requestedTime>\n\
+      \   <tns:featureType>string</tns:featureType>\n   <weatherParameters>\n    <maxt><!--\
+      \ mandatory -->true</maxt>\n    <mint><!-- mandatory -->true</mint>\n    <temp><!--\
+      \ mandatory -->true</temp>\n    <dew><!-- mandatory -->true</dew>\n    <pop12><!--\
+      \ mandatory -->true</pop12>\n    <qpf><!-- mandatory -->true</qpf>\n    <sky><!--\
+      \ mandatory -->true</sky>\n    <snow><!-- mandatory -->true</snow>\n    <wspd><!--\
+      \ mandatory -->true</wspd>\n    <wdir><!-- mandatory -->true</wdir>\n    <wx><!--\
+      \ mandatory -->true</wx>\n    <waveh><!-- mandatory -->true</waveh>\n    <icons><!--\
+      \ mandatory -->true</icons>\n    <rh><!-- mandatory -->true</rh>\n    <appt><!--\
+      \ mandatory -->true</appt>\n    <incw34><!-- mandatory -->true</incw34>\n  \
+      \  <incw50><!-- mandatory -->true</incw50>\n    <incw64><!-- mandatory -->true</incw64>\n\
+      \    <cumw34><!-- mandatory -->true</cumw34>\n    <cumw50><!-- mandatory -->true</cumw50>\n\
+      \    <cumw64><!-- mandatory -->true</cumw64>\n    <critfireo><!-- mandatory\
+      \ -->true</critfireo>\n    <dryfireo><!-- mandatory -->true</dryfireo>\n   \
+      \ <conhazo><!-- mandatory -->true</conhazo>\n    <ptornado><!-- mandatory -->true</ptornado>\n\
+      \    <phail><!-- mandatory -->true</phail>\n    <ptstmwinds><!-- mandatory -->true</ptstmwinds>\n\
+      \    <pxtornado><!-- mandatory -->true</pxtornado>\n    <pxhail><!-- mandatory\
+      \ -->true</pxhail>\n    <pxtstmwinds><!-- mandatory -->true</pxtstmwinds>\n\
+      \    <ptotsvrtstm><!-- mandatory -->true</ptotsvrtstm>\n    <pxtotsvrtstm><!--\
+      \ mandatory -->true</pxtotsvrtstm>\n    <tmpabv14d><!-- mandatory -->true</tmpabv14d>\n\
+      \    <tmpblw14d><!-- mandatory -->true</tmpblw14d>\n    <tmpabv30d><!-- mandatory\
+      \ -->true</tmpabv30d>\n    <tmpblw30d><!-- mandatory -->true</tmpblw30d>\n \
+      \   <tmpabv90d><!-- mandatory -->true</tmpabv90d>\n    <tmpblw90d><!-- mandatory\
+      \ -->true</tmpblw90d>\n    <prcpabv14d><!-- mandatory -->true</prcpabv14d>\n\
+      \    <prcpblw14d><!-- mandatory -->true</prcpblw14d>\n    <prcpabv30d><!-- mandatory\
+      \ -->true</prcpabv30d>\n    <prcpblw30d><!-- mandatory -->true</prcpblw30d>\n\
+      \    <prcpabv90d><!-- mandatory -->true</prcpabv90d>\n    <prcpblw90d><!-- mandatory\
+      \ -->true</prcpblw90d>\n    <precipa_r><!-- mandatory -->true</precipa_r>\n\
+      \    <sky_r><!-- mandatory -->true</sky_r>\n    <temp_r><!-- mandatory -->true</temp_r>\n\
+      \    <td_r><!-- mandatory -->true</td_r>\n    <wdir_r><!-- mandatory -->true</wdir_r>\n\
+      \    <wspd_r><!-- mandatory -->true</wspd_r>\n    <!-- Number of properties\
+      \ exceeds 50, truncated example -->\n   </weatherParameters>\n  </tns:GmlLatLonList>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  GmlLatLonListHeader:
+    description: "Input headers for wsdl operation GmlLatLonList"
+    type: "object"
+    properties:
+      Security:
+        $ref: "#/definitions/Security"
+  GmlLatLonListOutput:
+    description: "Output message for wsdl operation GmlLatLonList"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              GmlLatLonListResponse:
+                $ref: "#/definitions/GmlLatLonListResponse_tns"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "GmlLatLonList"
+      wsdl-message-direction-or-name: "GmlLatLonListResponse"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Body>\n  <tns:GmlLatLonListResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n   <tns:dwGmlOut>string</tns:dwGmlOut>\n  </tns:GmlLatLonListResponse>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  GmlTimeSeriesInput:
+    description: "Input message for wsdl operation GmlTimeSeries"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Header:
+            $ref: "#/definitions/GmlTimeSeriesHeader"
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              GmlTimeSeries:
+                $ref: "#/definitions/GmlTimeSeriesRequest_tns"
+            required:
+            - "GmlTimeSeries"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "GmlTimeSeries"
+      wsdl-message-direction-or-name: "GmlTimeSeriesRequest"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Header>\n  <!-- The Security element should be removed if WS-Security\
+      \ is not enabled on the SOAP target-url -->\n  <wsse:Security xmlns:wsse=\"\
+      http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\
+      \ xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+      >\n   <wsse:UsernameToken>\n    <wsse:Username>string</wsse:Username>\n    <wsse:Password>string</wsse:Password>\n\
+      \    <wsse:Nonce EncodingType=\"string\">string</wsse:Nonce>\n    <wsu:Created>string</wsu:Created>\n\
+      \   </wsse:UsernameToken>\n   <wsu:Timestamp wsu:Id=\"string\">\n    <wsu:Created>string</wsu:Created>\n\
+      \    <wsu:Expires>string</wsu:Expires>\n   </wsu:Timestamp>\n  </wsse:Security>\n\
+      \ </soapenv:Header>\n <soapenv:Body>\n  <tns:GmlTimeSeries xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      ><!-- mandatory -->\n   <tns:listLatLon>string</tns:listLatLon>\n   <tns:startTime>2016-04-18T14:07:37</tns:startTime>\n\
+      \   <tns:endTime>2016-04-18T14:07:37</tns:endTime>\n   <tns:compType>string</tns:compType>\n\
+      \   <tns:featureType>string</tns:featureType>\n   <tns:propertyName>string</tns:propertyName>\n\
+      \  </tns:GmlTimeSeries>\n </soapenv:Body>\n</soapenv:Envelope>"
+  GmlTimeSeriesHeader:
+    description: "Input headers for wsdl operation GmlTimeSeries"
+    type: "object"
+    properties:
+      Security:
+        $ref: "#/definitions/Security"
+  GmlTimeSeriesOutput:
+    description: "Output message for wsdl operation GmlTimeSeries"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              GmlTimeSeriesResponse:
+                $ref: "#/definitions/GmlTimeSeriesResponse_tns"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "GmlTimeSeries"
+      wsdl-message-direction-or-name: "GmlTimeSeriesResponse"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Body>\n  <tns:GmlTimeSeriesResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n   <tns:dwGmlOut>string</tns:dwGmlOut>\n  </tns:GmlTimeSeriesResponse>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  NDFDgenByDayInput:
+    description: "Input message for wsdl operation NDFDgenByDay"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Header:
+            $ref: "#/definitions/NDFDgenByDayHeader"
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              NDFDgenByDay:
+                $ref: "#/definitions/NDFDgenByDayRequest_tns"
+            required:
+            - "NDFDgenByDay"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "NDFDgenByDay"
+      wsdl-message-direction-or-name: "NDFDgenByDayRequest"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Header>\n  <!-- The Security element should be removed if WS-Security\
+      \ is not enabled on the SOAP target-url -->\n  <wsse:Security xmlns:wsse=\"\
+      http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\
+      \ xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+      >\n   <wsse:UsernameToken>\n    <wsse:Username>string</wsse:Username>\n    <wsse:Password>string</wsse:Password>\n\
+      \    <wsse:Nonce EncodingType=\"string\">string</wsse:Nonce>\n    <wsu:Created>string</wsu:Created>\n\
+      \   </wsse:UsernameToken>\n   <wsu:Timestamp wsu:Id=\"string\">\n    <wsu:Created>string</wsu:Created>\n\
+      \    <wsu:Expires>string</wsu:Expires>\n   </wsu:Timestamp>\n  </wsse:Security>\n\
+      \ </soapenv:Header>\n <soapenv:Body>\n  <tns:NDFDgenByDay xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      ><!-- mandatory -->\n   <tns:latitude>3</tns:latitude>\n   <tns:longitude>3</tns:longitude>\n\
+      \   <tns:startDate>2016-04-18</tns:startDate>\n   <tns:numDays>3</tns:numDays>\n\
+      \   <tns:Unit>string</tns:Unit>\n   <tns:format>string</tns:format>\n  </tns:NDFDgenByDay>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  NDFDgenByDayHeader:
+    description: "Input headers for wsdl operation NDFDgenByDay"
+    type: "object"
+    properties:
+      Security:
+        $ref: "#/definitions/Security"
+  NDFDgenByDayOutput:
+    description: "Output message for wsdl operation NDFDgenByDay"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              NDFDgenByDayResponse:
+                $ref: "#/definitions/NDFDgenByDayResponse_tns"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "NDFDgenByDay"
+      wsdl-message-direction-or-name: "NDFDgenByDayResponse"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Body>\n  <tns:NDFDgenByDayResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n   <tns:dwmlByDayOut>string</tns:dwmlByDayOut>\n  </tns:NDFDgenByDayResponse>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  NDFDgenByDayLatLonListInput:
+    description: "Input message for wsdl operation NDFDgenByDayLatLonList"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Header:
+            $ref: "#/definitions/NDFDgenByDayLatLonListHeader"
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              NDFDgenByDayLatLonList:
+                $ref: "#/definitions/NDFDgenByDayLatLonListRequest_tns"
+            required:
+            - "NDFDgenByDayLatLonList"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "NDFDgenByDayLatLonList"
+      wsdl-message-direction-or-name: "NDFDgenByDayLatLonListRequest"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Header>\n  <!-- The Security element should be removed if WS-Security\
+      \ is not enabled on the SOAP target-url -->\n  <wsse:Security xmlns:wsse=\"\
+      http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"\
+      \ xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+      >\n   <wsse:UsernameToken>\n    <wsse:Username>string</wsse:Username>\n    <wsse:Password>string</wsse:Password>\n\
+      \    <wsse:Nonce EncodingType=\"string\">string</wsse:Nonce>\n    <wsu:Created>string</wsu:Created>\n\
+      \   </wsse:UsernameToken>\n   <wsu:Timestamp wsu:Id=\"string\">\n    <wsu:Created>string</wsu:Created>\n\
+      \    <wsu:Expires>string</wsu:Expires>\n   </wsu:Timestamp>\n  </wsse:Security>\n\
+      \ </soapenv:Header>\n <soapenv:Body>\n  <tns:NDFDgenByDayLatLonList xmlns:tns=\"\
+      https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"><!-- mandatory\
+      \ -->\n   <tns:listLatLon>string</tns:listLatLon>\n   <tns:startDate>2016-04-18</tns:startDate>\n\
+      \   <tns:numDays>3</tns:numDays>\n   <tns:Unit>string</tns:Unit>\n   <tns:format>string</tns:format>\n\
+      \  </tns:NDFDgenByDayLatLonList>\n </soapenv:Body>\n</soapenv:Envelope>"
+  NDFDgenByDayLatLonListHeader:
+    description: "Input headers for wsdl operation NDFDgenByDayLatLonList"
+    type: "object"
+    properties:
+      Security:
+        $ref: "#/definitions/Security"
+  NDFDgenByDayLatLonListOutput:
+    description: "Output message for wsdl operation NDFDgenByDayLatLonList"
+    type: "object"
+    properties:
+      Envelope:
+        xml:
+          namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+          prefix: "soapenv"
+        type: "object"
+        properties:
+          Body:
+            xml:
+              namespace: "http://schemas.xmlsoap.org/soap/envelope/"
+              prefix: "soapenv"
+            type: "object"
+            properties:
+              NDFDgenByDayLatLonListResponse:
+                $ref: "#/definitions/NDFDgenByDayLatLonListResponse_tns"
+        required:
+        - "Body"
+    required:
+    - "Envelope"
+    x-ibm-schema:
+      wsdl-port: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}ndfdXMLPort"
+      wsdl-operation: "NDFDgenByDayLatLonList"
+      wsdl-message-direction-or-name: "NDFDgenByDayLatLonListResponse"
+    example: "\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\
+      >\n <soapenv:Body>\n  <tns:NDFDgenByDayLatLonListResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n   <tns:dwmlByDayOut>string</tns:dwmlByDayOut>\n  </tns:NDFDgenByDayLatLonListResponse>\n\
+      \ </soapenv:Body>\n</soapenv:Envelope>"
+  NDFDgenRequest_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "NDFDgen"
+    type: "object"
+    properties:
+      latitude:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      longitude:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      product:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+      startTime:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+        format: "date-time"
+      endTime:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+        format: "date-time"
+      Unit:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+      weatherParameters:
+        xml:
+          namespace: ""
+          prefix: ""
+        type: "object"
+        properties:
+          maxt:
+            xml:
+              namespace: ""
+            type: "boolean"
+          mint:
+            xml:
+              namespace: ""
+            type: "boolean"
+          temp:
+            xml:
+              namespace: ""
+            type: "boolean"
+          dew:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pop12:
+            xml:
+              namespace: ""
+            type: "boolean"
+          qpf:
+            xml:
+              namespace: ""
+            type: "boolean"
+          sky:
+            xml:
+              namespace: ""
+            type: "boolean"
+          snow:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wspd:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wdir:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wx:
+            xml:
+              namespace: ""
+            type: "boolean"
+          waveh:
+            xml:
+              namespace: ""
+            type: "boolean"
+          icons:
+            xml:
+              namespace: ""
+            type: "boolean"
+          rh:
+            xml:
+              namespace: ""
+            type: "boolean"
+          appt:
+            xml:
+              namespace: ""
+            type: "boolean"
+          incw34:
+            xml:
+              namespace: ""
+            type: "boolean"
+          incw50:
+            xml:
+              namespace: ""
+            type: "boolean"
+          incw64:
+            xml:
+              namespace: ""
+            type: "boolean"
+          cumw34:
+            xml:
+              namespace: ""
+            type: "boolean"
+          cumw50:
+            xml:
+              namespace: ""
+            type: "boolean"
+          cumw64:
+            xml:
+              namespace: ""
+            type: "boolean"
+          critfireo:
+            xml:
+              namespace: ""
+            type: "boolean"
+          dryfireo:
+            xml:
+              namespace: ""
+            type: "boolean"
+          conhazo:
+            xml:
+              namespace: ""
+            type: "boolean"
+          ptornado:
+            xml:
+              namespace: ""
+            type: "boolean"
+          phail:
+            xml:
+              namespace: ""
+            type: "boolean"
+          ptstmwinds:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pxtornado:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pxhail:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pxtstmwinds:
+            xml:
+              namespace: ""
+            type: "boolean"
+          ptotsvrtstm:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pxtotsvrtstm:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpabv14d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpblw14d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpabv30d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpblw30d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpabv90d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpblw90d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpabv14d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpblw14d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpabv30d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpblw30d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpabv90d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpblw90d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          precipa_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          sky_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          temp_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          td_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wdir_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wspd_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wwa:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wgust:
+            xml:
+              namespace: ""
+            type: "boolean"
+          iceaccum:
+            xml:
+              namespace: ""
+            type: "boolean"
+        required:
+        - "maxt"
+        - "mint"
+        - "temp"
+        - "dew"
+        - "pop12"
+        - "qpf"
+        - "sky"
+        - "snow"
+        - "wspd"
+        - "wdir"
+        - "wx"
+        - "waveh"
+        - "icons"
+        - "rh"
+        - "appt"
+        - "incw34"
+        - "incw50"
+        - "incw64"
+        - "cumw34"
+        - "cumw50"
+        - "cumw64"
+        - "critfireo"
+        - "dryfireo"
+        - "conhazo"
+        - "ptornado"
+        - "phail"
+        - "ptstmwinds"
+        - "pxtornado"
+        - "pxhail"
+        - "pxtstmwinds"
+        - "ptotsvrtstm"
+        - "pxtotsvrtstm"
+        - "tmpabv14d"
+        - "tmpblw14d"
+        - "tmpabv30d"
+        - "tmpblw30d"
+        - "tmpabv90d"
+        - "tmpblw90d"
+        - "prcpabv14d"
+        - "prcpblw14d"
+        - "prcpabv30d"
+        - "prcpblw30d"
+        - "prcpabv90d"
+        - "prcpblw90d"
+        - "precipa_r"
+        - "sky_r"
+        - "temp_r"
+        - "td_r"
+        - "wdir_r"
+        - "wspd_r"
+        - "wwa"
+        - "wgust"
+        - "iceaccum"
+    example: "\n<tns:NDFDgen xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:latitude>3</tns:latitude>\n <tns:longitude>3</tns:longitude>\n <tns:product>string</tns:product>\n\
+      \ <tns:startTime>2016-04-18T14:07:37</tns:startTime>\n <tns:endTime>2016-04-18T14:07:37</tns:endTime>\n\
+      \ <tns:Unit>string</tns:Unit>\n <weatherParameters>\n  <maxt><!-- mandatory\
+      \ -->true</maxt>\n  <mint><!-- mandatory -->true</mint>\n  <temp><!-- mandatory\
+      \ -->true</temp>\n  <dew><!-- mandatory -->true</dew>\n  <pop12><!-- mandatory\
+      \ -->true</pop12>\n  <qpf><!-- mandatory -->true</qpf>\n  <sky><!-- mandatory\
+      \ -->true</sky>\n  <snow><!-- mandatory -->true</snow>\n  <wspd><!-- mandatory\
+      \ -->true</wspd>\n  <wdir><!-- mandatory -->true</wdir>\n  <wx><!-- mandatory\
+      \ -->true</wx>\n  <waveh><!-- mandatory -->true</waveh>\n  <icons><!-- mandatory\
+      \ -->true</icons>\n  <rh><!-- mandatory -->true</rh>\n  <appt><!-- mandatory\
+      \ -->true</appt>\n  <incw34><!-- mandatory -->true</incw34>\n  <incw50><!--\
+      \ mandatory -->true</incw50>\n  <incw64><!-- mandatory -->true</incw64>\n  <cumw34><!--\
+      \ mandatory -->true</cumw34>\n  <cumw50><!-- mandatory -->true</cumw50>\n  <cumw64><!--\
+      \ mandatory -->true</cumw64>\n  <critfireo><!-- mandatory -->true</critfireo>\n\
+      \  <dryfireo><!-- mandatory -->true</dryfireo>\n  <conhazo><!-- mandatory -->true</conhazo>\n\
+      \  <ptornado><!-- mandatory -->true</ptornado>\n  <phail><!-- mandatory -->true</phail>\n\
+      \  <ptstmwinds><!-- mandatory -->true</ptstmwinds>\n  <pxtornado><!-- mandatory\
+      \ -->true</pxtornado>\n  <pxhail><!-- mandatory -->true</pxhail>\n  <pxtstmwinds><!--\
+      \ mandatory -->true</pxtstmwinds>\n  <ptotsvrtstm><!-- mandatory -->true</ptotsvrtstm>\n\
+      \  <pxtotsvrtstm><!-- mandatory -->true</pxtotsvrtstm>\n  <tmpabv14d><!-- mandatory\
+      \ -->true</tmpabv14d>\n  <tmpblw14d><!-- mandatory -->true</tmpblw14d>\n  <tmpabv30d><!--\
+      \ mandatory -->true</tmpabv30d>\n  <tmpblw30d><!-- mandatory -->true</tmpblw30d>\n\
+      \  <tmpabv90d><!-- mandatory -->true</tmpabv90d>\n  <tmpblw90d><!-- mandatory\
+      \ -->true</tmpblw90d>\n  <prcpabv14d><!-- mandatory -->true</prcpabv14d>\n \
+      \ <prcpblw14d><!-- mandatory -->true</prcpblw14d>\n  <prcpabv30d><!-- mandatory\
+      \ -->true</prcpabv30d>\n  <prcpblw30d><!-- mandatory -->true</prcpblw30d>\n\
+      \  <prcpabv90d><!-- mandatory -->true</prcpabv90d>\n  <prcpblw90d><!-- mandatory\
+      \ -->true</prcpblw90d>\n  <precipa_r><!-- mandatory -->true</precipa_r>\n  <sky_r><!--\
+      \ mandatory -->true</sky_r>\n  <temp_r><!-- mandatory -->true</temp_r>\n  <td_r><!--\
+      \ mandatory -->true</td_r>\n  <wdir_r><!-- mandatory -->true</wdir_r>\n  <wspd_r><!--\
+      \ mandatory -->true</wspd_r>\n  <!-- Number of properties exceeds 50, truncated\
+      \ example -->\n </weatherParameters>\n</tns:NDFDgen>"
+  NDFDgenResponse_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "NDFDgenResponse"
+    type: "object"
+    properties:
+      dwmlOut:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:NDFDgenResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:dwmlOut>string</tns:dwmlOut>\n</tns:NDFDgenResponse>"
+  NDFDgenLatLonListRequest_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "NDFDgenLatLonList"
+    type: "object"
+    properties:
+      listLatLon:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+      product:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+      startTime:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+        format: "date-time"
+      endTime:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+        format: "date-time"
+      Unit:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+      weatherParameters:
+        xml:
+          namespace: ""
+          prefix: ""
+        type: "object"
+        properties:
+          maxt:
+            xml:
+              namespace: ""
+            type: "boolean"
+          mint:
+            xml:
+              namespace: ""
+            type: "boolean"
+          temp:
+            xml:
+              namespace: ""
+            type: "boolean"
+          dew:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pop12:
+            xml:
+              namespace: ""
+            type: "boolean"
+          qpf:
+            xml:
+              namespace: ""
+            type: "boolean"
+          sky:
+            xml:
+              namespace: ""
+            type: "boolean"
+          snow:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wspd:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wdir:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wx:
+            xml:
+              namespace: ""
+            type: "boolean"
+          waveh:
+            xml:
+              namespace: ""
+            type: "boolean"
+          icons:
+            xml:
+              namespace: ""
+            type: "boolean"
+          rh:
+            xml:
+              namespace: ""
+            type: "boolean"
+          appt:
+            xml:
+              namespace: ""
+            type: "boolean"
+          incw34:
+            xml:
+              namespace: ""
+            type: "boolean"
+          incw50:
+            xml:
+              namespace: ""
+            type: "boolean"
+          incw64:
+            xml:
+              namespace: ""
+            type: "boolean"
+          cumw34:
+            xml:
+              namespace: ""
+            type: "boolean"
+          cumw50:
+            xml:
+              namespace: ""
+            type: "boolean"
+          cumw64:
+            xml:
+              namespace: ""
+            type: "boolean"
+          critfireo:
+            xml:
+              namespace: ""
+            type: "boolean"
+          dryfireo:
+            xml:
+              namespace: ""
+            type: "boolean"
+          conhazo:
+            xml:
+              namespace: ""
+            type: "boolean"
+          ptornado:
+            xml:
+              namespace: ""
+            type: "boolean"
+          phail:
+            xml:
+              namespace: ""
+            type: "boolean"
+          ptstmwinds:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pxtornado:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pxhail:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pxtstmwinds:
+            xml:
+              namespace: ""
+            type: "boolean"
+          ptotsvrtstm:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pxtotsvrtstm:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpabv14d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpblw14d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpabv30d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpblw30d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpabv90d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpblw90d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpabv14d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpblw14d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpabv30d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpblw30d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpabv90d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpblw90d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          precipa_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          sky_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          temp_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          td_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wdir_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wspd_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wwa:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wgust:
+            xml:
+              namespace: ""
+            type: "boolean"
+          iceaccum:
+            xml:
+              namespace: ""
+            type: "boolean"
+        required:
+        - "maxt"
+        - "mint"
+        - "temp"
+        - "dew"
+        - "pop12"
+        - "qpf"
+        - "sky"
+        - "snow"
+        - "wspd"
+        - "wdir"
+        - "wx"
+        - "waveh"
+        - "icons"
+        - "rh"
+        - "appt"
+        - "incw34"
+        - "incw50"
+        - "incw64"
+        - "cumw34"
+        - "cumw50"
+        - "cumw64"
+        - "critfireo"
+        - "dryfireo"
+        - "conhazo"
+        - "ptornado"
+        - "phail"
+        - "ptstmwinds"
+        - "pxtornado"
+        - "pxhail"
+        - "pxtstmwinds"
+        - "ptotsvrtstm"
+        - "pxtotsvrtstm"
+        - "tmpabv14d"
+        - "tmpblw14d"
+        - "tmpabv30d"
+        - "tmpblw30d"
+        - "tmpabv90d"
+        - "tmpblw90d"
+        - "prcpabv14d"
+        - "prcpblw14d"
+        - "prcpabv30d"
+        - "prcpblw30d"
+        - "prcpabv90d"
+        - "prcpblw90d"
+        - "precipa_r"
+        - "sky_r"
+        - "temp_r"
+        - "td_r"
+        - "wdir_r"
+        - "wspd_r"
+        - "wwa"
+        - "wgust"
+        - "iceaccum"
+    example: "\n<tns:NDFDgenLatLonList xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:listLatLon>string</tns:listLatLon>\n <tns:product>string</tns:product>\n\
+      \ <tns:startTime>2016-04-18T14:07:37</tns:startTime>\n <tns:endTime>2016-04-18T14:07:37</tns:endTime>\n\
+      \ <tns:Unit>string</tns:Unit>\n <weatherParameters>\n  <maxt><!-- mandatory\
+      \ -->true</maxt>\n  <mint><!-- mandatory -->true</mint>\n  <temp><!-- mandatory\
+      \ -->true</temp>\n  <dew><!-- mandatory -->true</dew>\n  <pop12><!-- mandatory\
+      \ -->true</pop12>\n  <qpf><!-- mandatory -->true</qpf>\n  <sky><!-- mandatory\
+      \ -->true</sky>\n  <snow><!-- mandatory -->true</snow>\n  <wspd><!-- mandatory\
+      \ -->true</wspd>\n  <wdir><!-- mandatory -->true</wdir>\n  <wx><!-- mandatory\
+      \ -->true</wx>\n  <waveh><!-- mandatory -->true</waveh>\n  <icons><!-- mandatory\
+      \ -->true</icons>\n  <rh><!-- mandatory -->true</rh>\n  <appt><!-- mandatory\
+      \ -->true</appt>\n  <incw34><!-- mandatory -->true</incw34>\n  <incw50><!--\
+      \ mandatory -->true</incw50>\n  <incw64><!-- mandatory -->true</incw64>\n  <cumw34><!--\
+      \ mandatory -->true</cumw34>\n  <cumw50><!-- mandatory -->true</cumw50>\n  <cumw64><!--\
+      \ mandatory -->true</cumw64>\n  <critfireo><!-- mandatory -->true</critfireo>\n\
+      \  <dryfireo><!-- mandatory -->true</dryfireo>\n  <conhazo><!-- mandatory -->true</conhazo>\n\
+      \  <ptornado><!-- mandatory -->true</ptornado>\n  <phail><!-- mandatory -->true</phail>\n\
+      \  <ptstmwinds><!-- mandatory -->true</ptstmwinds>\n  <pxtornado><!-- mandatory\
+      \ -->true</pxtornado>\n  <pxhail><!-- mandatory -->true</pxhail>\n  <pxtstmwinds><!--\
+      \ mandatory -->true</pxtstmwinds>\n  <ptotsvrtstm><!-- mandatory -->true</ptotsvrtstm>\n\
+      \  <pxtotsvrtstm><!-- mandatory -->true</pxtotsvrtstm>\n  <tmpabv14d><!-- mandatory\
+      \ -->true</tmpabv14d>\n  <tmpblw14d><!-- mandatory -->true</tmpblw14d>\n  <tmpabv30d><!--\
+      \ mandatory -->true</tmpabv30d>\n  <tmpblw30d><!-- mandatory -->true</tmpblw30d>\n\
+      \  <tmpabv90d><!-- mandatory -->true</tmpabv90d>\n  <tmpblw90d><!-- mandatory\
+      \ -->true</tmpblw90d>\n  <prcpabv14d><!-- mandatory -->true</prcpabv14d>\n \
+      \ <prcpblw14d><!-- mandatory -->true</prcpblw14d>\n  <prcpabv30d><!-- mandatory\
+      \ -->true</prcpabv30d>\n  <prcpblw30d><!-- mandatory -->true</prcpblw30d>\n\
+      \  <prcpabv90d><!-- mandatory -->true</prcpabv90d>\n  <prcpblw90d><!-- mandatory\
+      \ -->true</prcpblw90d>\n  <precipa_r><!-- mandatory -->true</precipa_r>\n  <sky_r><!--\
+      \ mandatory -->true</sky_r>\n  <temp_r><!-- mandatory -->true</temp_r>\n  <td_r><!--\
+      \ mandatory -->true</td_r>\n  <wdir_r><!-- mandatory -->true</wdir_r>\n  <wspd_r><!--\
+      \ mandatory -->true</wspd_r>\n  <!-- Number of properties exceeds 50, truncated\
+      \ example -->\n </weatherParameters>\n</tns:NDFDgenLatLonList>"
+  NDFDgenLatLonListResponse_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "NDFDgenLatLonListResponse"
+    type: "object"
+    properties:
+      dwmlOut:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:NDFDgenLatLonListResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:dwmlOut>string</tns:dwmlOut>\n</tns:NDFDgenLatLonListResponse>"
+  LatLonListSubgridRequest_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "LatLonListSubgrid"
+    type: "object"
+    properties:
+      lowerLeftLatitude:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      lowerLeftLongitude:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      upperRightLatitude:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      upperRightLongitude:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      resolution:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+    example: "\n<tns:LatLonListSubgrid xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:lowerLeftLatitude>3</tns:lowerLeftLatitude>\n <tns:lowerLeftLongitude>3</tns:lowerLeftLongitude>\n\
+      \ <tns:upperRightLatitude>3</tns:upperRightLatitude>\n <tns:upperRightLongitude>3</tns:upperRightLongitude>\n\
+      \ <tns:resolution>3</tns:resolution>\n</tns:LatLonListSubgrid>"
+  LatLonListSubgridResponse_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "LatLonListSubgridResponse"
+    type: "object"
+    properties:
+      listLatLonOut:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:LatLonListSubgridResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:listLatLonOut>string</tns:listLatLonOut>\n</tns:LatLonListSubgridResponse>"
+  LatLonListLineRequest_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "LatLonListLine"
+    type: "object"
+    properties:
+      endPoint1Lat:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      endPoint1Lon:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      endPoint2Lat:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      endPoint2Lon:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+    example: "\n<tns:LatLonListLine xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:endPoint1Lat>3</tns:endPoint1Lat>\n <tns:endPoint1Lon>3</tns:endPoint1Lon>\n\
+      \ <tns:endPoint2Lat>3</tns:endPoint2Lat>\n <tns:endPoint2Lon>3</tns:endPoint2Lon>\n\
+      </tns:LatLonListLine>"
+  LatLonListLineResponse_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "LatLonListLineResponse"
+    type: "object"
+    properties:
+      listLatLonOut:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:LatLonListLineResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:listLatLonOut>string</tns:listLatLonOut>\n</tns:LatLonListLineResponse>"
+  LatLonListZipCodeRequest_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "LatLonListZipCode"
+    type: "object"
+    properties:
+      zipCodeList:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:LatLonListZipCode xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:zipCodeList>string</tns:zipCodeList>\n</tns:LatLonListZipCode>"
+  LatLonListZipCodeResponse_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "LatLonListZipCodeResponse"
+    type: "object"
+    properties:
+      listLatLonOut:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:LatLonListZipCodeResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:listLatLonOut>string</tns:listLatLonOut>\n</tns:LatLonListZipCodeResponse>"
+  LatLonListCityNamesRequest_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "LatLonListCityNames"
+    type: "object"
+    properties:
+      displayLevel:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+    example: "\n<tns:LatLonListCityNames xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:displayLevel>3</tns:displayLevel>\n</tns:LatLonListCityNames>"
+  LatLonListCityNamesResponse_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "LatLonListCityNamesResponse"
+    type: "object"
+    properties:
+      listLatLonOut:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:LatLonListCityNamesResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:listLatLonOut>string</tns:listLatLonOut>\n</tns:LatLonListCityNamesResponse>"
+  LatLonListSquareRequest_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "LatLonListSquare"
+    type: "object"
+    properties:
+      centerPointLat:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      centerPointLon:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      distanceLat:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      distanceLon:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      resolution:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+    example: "\n<tns:LatLonListSquare xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:centerPointLat>3</tns:centerPointLat>\n <tns:centerPointLon>3</tns:centerPointLon>\n\
+      \ <tns:distanceLat>3</tns:distanceLat>\n <tns:distanceLon>3</tns:distanceLon>\n\
+      \ <tns:resolution>3</tns:resolution>\n</tns:LatLonListSquare>"
+  LatLonListSquareResponse_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "LatLonListSquareResponse"
+    type: "object"
+    properties:
+      listLatLonOut:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:LatLonListSquareResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:listLatLonOut>string</tns:listLatLonOut>\n</tns:LatLonListSquareResponse>"
+  CornerPointsRequest_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "CornerPoints"
+    type: "object"
+    properties:
+      sector:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:CornerPoints xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:sector>string</tns:sector>\n</tns:CornerPoints>"
+  CornerPointsResponse_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "CornerPointsResponse"
+    type: "object"
+    properties:
+      listLatLonOut:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:CornerPointsResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:listLatLonOut>string</tns:listLatLonOut>\n</tns:CornerPointsResponse>"
+  GmlLatLonListRequest_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "GmlLatLonList"
+    type: "object"
+    properties:
+      listLatLon:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+      requestedTime:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+        format: "date-time"
+      featureType:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+      weatherParameters:
+        xml:
+          namespace: ""
+          prefix: ""
+        type: "object"
+        properties:
+          maxt:
+            xml:
+              namespace: ""
+            type: "boolean"
+          mint:
+            xml:
+              namespace: ""
+            type: "boolean"
+          temp:
+            xml:
+              namespace: ""
+            type: "boolean"
+          dew:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pop12:
+            xml:
+              namespace: ""
+            type: "boolean"
+          qpf:
+            xml:
+              namespace: ""
+            type: "boolean"
+          sky:
+            xml:
+              namespace: ""
+            type: "boolean"
+          snow:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wspd:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wdir:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wx:
+            xml:
+              namespace: ""
+            type: "boolean"
+          waveh:
+            xml:
+              namespace: ""
+            type: "boolean"
+          icons:
+            xml:
+              namespace: ""
+            type: "boolean"
+          rh:
+            xml:
+              namespace: ""
+            type: "boolean"
+          appt:
+            xml:
+              namespace: ""
+            type: "boolean"
+          incw34:
+            xml:
+              namespace: ""
+            type: "boolean"
+          incw50:
+            xml:
+              namespace: ""
+            type: "boolean"
+          incw64:
+            xml:
+              namespace: ""
+            type: "boolean"
+          cumw34:
+            xml:
+              namespace: ""
+            type: "boolean"
+          cumw50:
+            xml:
+              namespace: ""
+            type: "boolean"
+          cumw64:
+            xml:
+              namespace: ""
+            type: "boolean"
+          critfireo:
+            xml:
+              namespace: ""
+            type: "boolean"
+          dryfireo:
+            xml:
+              namespace: ""
+            type: "boolean"
+          conhazo:
+            xml:
+              namespace: ""
+            type: "boolean"
+          ptornado:
+            xml:
+              namespace: ""
+            type: "boolean"
+          phail:
+            xml:
+              namespace: ""
+            type: "boolean"
+          ptstmwinds:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pxtornado:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pxhail:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pxtstmwinds:
+            xml:
+              namespace: ""
+            type: "boolean"
+          ptotsvrtstm:
+            xml:
+              namespace: ""
+            type: "boolean"
+          pxtotsvrtstm:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpabv14d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpblw14d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpabv30d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpblw30d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpabv90d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          tmpblw90d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpabv14d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpblw14d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpabv30d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpblw30d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpabv90d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          prcpblw90d:
+            xml:
+              namespace: ""
+            type: "boolean"
+          precipa_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          sky_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          temp_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          td_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wdir_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wspd_r:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wwa:
+            xml:
+              namespace: ""
+            type: "boolean"
+          wgust:
+            xml:
+              namespace: ""
+            type: "boolean"
+          iceaccum:
+            xml:
+              namespace: ""
+            type: "boolean"
+        required:
+        - "maxt"
+        - "mint"
+        - "temp"
+        - "dew"
+        - "pop12"
+        - "qpf"
+        - "sky"
+        - "snow"
+        - "wspd"
+        - "wdir"
+        - "wx"
+        - "waveh"
+        - "icons"
+        - "rh"
+        - "appt"
+        - "incw34"
+        - "incw50"
+        - "incw64"
+        - "cumw34"
+        - "cumw50"
+        - "cumw64"
+        - "critfireo"
+        - "dryfireo"
+        - "conhazo"
+        - "ptornado"
+        - "phail"
+        - "ptstmwinds"
+        - "pxtornado"
+        - "pxhail"
+        - "pxtstmwinds"
+        - "ptotsvrtstm"
+        - "pxtotsvrtstm"
+        - "tmpabv14d"
+        - "tmpblw14d"
+        - "tmpabv30d"
+        - "tmpblw30d"
+        - "tmpabv90d"
+        - "tmpblw90d"
+        - "prcpabv14d"
+        - "prcpblw14d"
+        - "prcpabv30d"
+        - "prcpblw30d"
+        - "prcpabv90d"
+        - "prcpblw90d"
+        - "precipa_r"
+        - "sky_r"
+        - "temp_r"
+        - "td_r"
+        - "wdir_r"
+        - "wspd_r"
+        - "wwa"
+        - "wgust"
+        - "iceaccum"
+    example: "\n<tns:GmlLatLonList xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:listLatLon>string</tns:listLatLon>\n <tns:requestedTime>2016-04-18T14:07:37</tns:requestedTime>\n\
+      \ <tns:featureType>string</tns:featureType>\n <weatherParameters>\n  <maxt><!--\
+      \ mandatory -->true</maxt>\n  <mint><!-- mandatory -->true</mint>\n  <temp><!--\
+      \ mandatory -->true</temp>\n  <dew><!-- mandatory -->true</dew>\n  <pop12><!--\
+      \ mandatory -->true</pop12>\n  <qpf><!-- mandatory -->true</qpf>\n  <sky><!--\
+      \ mandatory -->true</sky>\n  <snow><!-- mandatory -->true</snow>\n  <wspd><!--\
+      \ mandatory -->true</wspd>\n  <wdir><!-- mandatory -->true</wdir>\n  <wx><!--\
+      \ mandatory -->true</wx>\n  <waveh><!-- mandatory -->true</waveh>\n  <icons><!--\
+      \ mandatory -->true</icons>\n  <rh><!-- mandatory -->true</rh>\n  <appt><!--\
+      \ mandatory -->true</appt>\n  <incw34><!-- mandatory -->true</incw34>\n  <incw50><!--\
+      \ mandatory -->true</incw50>\n  <incw64><!-- mandatory -->true</incw64>\n  <cumw34><!--\
+      \ mandatory -->true</cumw34>\n  <cumw50><!-- mandatory -->true</cumw50>\n  <cumw64><!--\
+      \ mandatory -->true</cumw64>\n  <critfireo><!-- mandatory -->true</critfireo>\n\
+      \  <dryfireo><!-- mandatory -->true</dryfireo>\n  <conhazo><!-- mandatory -->true</conhazo>\n\
+      \  <ptornado><!-- mandatory -->true</ptornado>\n  <phail><!-- mandatory -->true</phail>\n\
+      \  <ptstmwinds><!-- mandatory -->true</ptstmwinds>\n  <pxtornado><!-- mandatory\
+      \ -->true</pxtornado>\n  <pxhail><!-- mandatory -->true</pxhail>\n  <pxtstmwinds><!--\
+      \ mandatory -->true</pxtstmwinds>\n  <ptotsvrtstm><!-- mandatory -->true</ptotsvrtstm>\n\
+      \  <pxtotsvrtstm><!-- mandatory -->true</pxtotsvrtstm>\n  <tmpabv14d><!-- mandatory\
+      \ -->true</tmpabv14d>\n  <tmpblw14d><!-- mandatory -->true</tmpblw14d>\n  <tmpabv30d><!--\
+      \ mandatory -->true</tmpabv30d>\n  <tmpblw30d><!-- mandatory -->true</tmpblw30d>\n\
+      \  <tmpabv90d><!-- mandatory -->true</tmpabv90d>\n  <tmpblw90d><!-- mandatory\
+      \ -->true</tmpblw90d>\n  <prcpabv14d><!-- mandatory -->true</prcpabv14d>\n \
+      \ <prcpblw14d><!-- mandatory -->true</prcpblw14d>\n  <prcpabv30d><!-- mandatory\
+      \ -->true</prcpabv30d>\n  <prcpblw30d><!-- mandatory -->true</prcpblw30d>\n\
+      \  <prcpabv90d><!-- mandatory -->true</prcpabv90d>\n  <prcpblw90d><!-- mandatory\
+      \ -->true</prcpblw90d>\n  <precipa_r><!-- mandatory -->true</precipa_r>\n  <sky_r><!--\
+      \ mandatory -->true</sky_r>\n  <temp_r><!-- mandatory -->true</temp_r>\n  <td_r><!--\
+      \ mandatory -->true</td_r>\n  <wdir_r><!-- mandatory -->true</wdir_r>\n  <wspd_r><!--\
+      \ mandatory -->true</wspd_r>\n  <!-- Number of properties exceeds 50, truncated\
+      \ example -->\n </weatherParameters>\n</tns:GmlLatLonList>"
+  GmlLatLonListResponse_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "GmlLatLonListResponse"
+    type: "object"
+    properties:
+      dwGmlOut:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:GmlLatLonListResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:dwGmlOut>string</tns:dwGmlOut>\n</tns:GmlLatLonListResponse>"
+  GmlTimeSeriesRequest_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "GmlTimeSeries"
+    type: "object"
+    properties:
+      listLatLon:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+      startTime:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+        format: "date-time"
+      endTime:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+        format: "date-time"
+      compType:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+      featureType:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+      propertyName:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:GmlTimeSeries xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:listLatLon>string</tns:listLatLon>\n <tns:startTime>2016-04-18T14:07:37</tns:startTime>\n\
+      \ <tns:endTime>2016-04-18T14:07:37</tns:endTime>\n <tns:compType>string</tns:compType>\n\
+      \ <tns:featureType>string</tns:featureType>\n <tns:propertyName>string</tns:propertyName>\n\
+      </tns:GmlTimeSeries>"
+  GmlTimeSeriesResponse_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "GmlTimeSeriesResponse"
+    type: "object"
+    properties:
+      dwGmlOut:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:GmlTimeSeriesResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:dwGmlOut>string</tns:dwGmlOut>\n</tns:GmlTimeSeriesResponse>"
+  NDFDgenByDayRequest_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "NDFDgenByDay"
+    type: "object"
+    properties:
+      latitude:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      longitude:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      startDate:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+        format: "date"
+      numDays:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      Unit:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+      format:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:NDFDgenByDay xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:latitude>3</tns:latitude>\n <tns:longitude>3</tns:longitude>\n <tns:startDate>2016-04-18</tns:startDate>\n\
+      \ <tns:numDays>3</tns:numDays>\n <tns:Unit>string</tns:Unit>\n <tns:format>string</tns:format>\n\
+      </tns:NDFDgenByDay>"
+  NDFDgenByDayResponse_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "NDFDgenByDayResponse"
+    type: "object"
+    properties:
+      dwmlByDayOut:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:NDFDgenByDayResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:dwmlByDayOut>string</tns:dwmlByDayOut>\n</tns:NDFDgenByDayResponse>"
+  NDFDgenByDayLatLonListRequest_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "NDFDgenByDayLatLonList"
+    type: "object"
+    properties:
+      listLatLon:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+      startDate:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+        format: "date"
+      numDays:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "number"
+      Unit:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+      format:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:NDFDgenByDayLatLonList xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:listLatLon>string</tns:listLatLon>\n <tns:startDate>2016-04-18</tns:startDate>\n\
+      \ <tns:numDays>3</tns:numDays>\n <tns:Unit>string</tns:Unit>\n <tns:format>string</tns:format>\n\
+      </tns:NDFDgenByDayLatLonList>"
+  NDFDgenByDayLatLonListResponse_tns:
+    xml:
+      namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+      prefix: "tns"
+      name: "NDFDgenByDayLatLonListResponse"
+    type: "object"
+    properties:
+      dwmlByDayOut:
+        xml:
+          namespace: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl"
+          prefix: "tns"
+        type: "string"
+    example: "\n<tns:NDFDgenByDayLatLonListResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
+      >\n <tns:dwmlByDayOut>string</tns:dwmlByDayOut>\n</tns:NDFDgenByDayLatLonListResponse>"
+  JsonLatLonListZipCode:
+    properties:
+      zipCodeList:
+        type: "string"
+    additionalProperties: false
