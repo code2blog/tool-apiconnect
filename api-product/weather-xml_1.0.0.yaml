@@ -35,14 +35,86 @@ x-ibm-configuration:
     soap-version: "1.1"
   assembly:
     execute:
-    - proxy:
-        title: "proxy"
-        timeout: 60
-        verb: "keep"
-        cache-response: "protocol"
-        cache-ttl: 900
+    - operation-switch:
+        title: "operation-switch"
+        case:
+        - operations:
+          - "LatLonListZipCode"
+          execute:
+          - proxy:
+              title: "proxy"
+              timeout: 60
+              verb: "keep"
+              cache-response: "protocol"
+              cache-ttl: 900
+              version: "1.0.0"
+              target-url: "https://graphical.weather.gov/xml/SOAP_server/ndfdXMLserver.php"
+              output: "WeatherProxyOutput"
+          - map:
+              title: "map"
+              inputs:
+                input:
+                  schema:
+                    $ref: "#/definitions/LatLonListZipCodeOutput"
+                  variable: "request.body"
+              outputs:
+                output:
+                  schema:
+                    type: "object"
+                    properties:
+                      result:
+                        type: "string"
+                        name: "result"
+                  variable: "message.body"
+                  content: "application/json"
+              actions:
+              - set: "output.result"
+                from: "input.Envelope.Body.LatLonListZipCodeResponse.listLatLonOut"
+              version: "1.0.0"
+        - operations:
+          - "LatLonListCityNames"
+          execute:
+          - gatewayscript:
+              title: "gatewayscript - read input"
+              version: "1.0.0"
+              source: "apim.readInputAsXML(function (error, nodelist) {\r\n\tif (error)\
+                \ {\r\n\t\t//console.error('Error readAsJSON: ' + error);\r\n\t\t\r\
+                \n\t\t// Message ID in hex string format\r\n\t\terror.errorCode;\r\
+                \n\t\t\r\n        // English text message describing the failure that\
+                \ occurred\r\n        error.errorMessage;\r\n        \r\n        //\
+                \ English help text describing what the error is and the cause.\r\n\
+                \    \terror.errorDescription; \r\n\t\t\r\n        // English suggestion\
+                \ on how to resolve the error\r\n        error.errorSuggestion;\r\n\
+                \        \r\n    \t// Back trace listing the call stack leading up\
+                \ to the error occurrence.\r\n    \terror.stack;\r\n    \t\r\n   \
+                \ \tsession.output.write(error);\r\n    \tapim.output('application/json');\r\
+                \n\t\t\r\n\t} else {\r\n\t    \r\n\t    session.output.write(nodelist);\r\
+                \n\t    apim.output('application/xml');\r\n\t}\r\n});\r\n"
+          - gatewayscript:
+              title: "gatewayscript - getvar"
+              version: "1.0.0"
+              source: "var apic = require('./apim.custom.js');\r\n\r\nvar gwVar =\
+                \ {};\r\ngwVar.log = [];\r\n\r\nfunction findInNodeList(nodeList,\
+                \ name){\r\n\tvar foundTheseNames = [];\r\n\tfor (var i = 0; i < nodeList.length;\
+                \ i++){\r\n\t\tvar node = nodeList.item(i);\r\n\t\tvar foundThisName\
+                \ = node.localName;\r\n\t\tgwVar.log.push('findInNodeList-'+foundThisName);\r\
+                \n\t\tfoundTheseNames.push(foundThisName);\r\n\t\tif(name == foundThisName){\r\
+                \n\t\t\treturn node;\r\n\t\t}\t\r\n\t}\r\n\treturn foundTheseNames;\r\
+                \n}\r\n\r\n// 'request.body.Envelope.Body.LatLonListZipCodeResponse.listLatLonOut'\r\
+                \nvar forCodeReadability = findInNodeList(apim.getvariable('request.body'),\
+                \ 'Envelope');\r\ngwVar.log.push('findInNodeList-Result-'+forCodeReadability);\r\
+                \n\r\n// node type = element \r\nforCodeReadability = findInNodeList(forCodeReadability.childNodes,\
+                \ 'Body');\r\nforCodeReadability = findInNodeList(forCodeReadability.childNodes,\
+                \ 'LatLonListZipCodeResponse');\r\nforCodeReadability = findInNodeList(forCodeReadability.childNodes,\
+                \ 'listLatLonOut');\r\n\r\n// node type = document\r\nforCodeReadability\
+                \ = findInNodeList(XML.parse(forCodeReadability.textContent).childNodes,\
+                \ 'dwml');\r\n\r\n// node type = element \r\nforCodeReadability =\
+                \ findInNodeList(forCodeReadability.childNodes, 'latLonList');\r\n\
+                \r\ngwVar.xmlString = forCodeReadability.textContent;\r\n\r\napim.setvariable('message.headers.content-type',\
+                \ 'application/json', 'set');\r\n// gwVar.log = null;\r\napim.setvariable('message.body',\
+                \ JSON.stringify(gwVar), 'set');\r\n\r\n\r\n"
+        otherwise: []
         version: "1.0.0"
-        target-url: "https://graphical.weather.gov/xml/SOAP_server/ndfdXMLserver.php"
   x-ibm-apiconnect-wsdl:
     package-version: "1.8.31"
     options: {}
