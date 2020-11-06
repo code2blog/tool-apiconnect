@@ -22,11 +22,27 @@ function findInNodeList(nodeList, name){
 	return foundTheseNames;
 }
 
+function iterateXmlTagNames(n) { // n is a Node 
+	if (n.nodeType == 1) { // Check if n is an Element 
+		gwVar.log.push(n.nodeName); 
+	}
+	var children = n.childNodes;  
+	for(var i=0; i < children.length; i++) { 
+		iterateXmlTagNames(children[i]);  // Recurse = 
+	}
+ }
+
 try {
-	var body = apim.getvariable('request.body');
-	gwVar.body = body;
+	gwVar.debug = {};
+	gwVar.debug.body = apim.getvariable('request.body');
+	gwVar.debug.WeatherProxyOutput = apim.getvariable('WeatherProxyOutput');;
+	gwVar.debug.WeatherProxyOutput_body = apim.getvariable('WeatherProxyOutput.body');
+	gwVar.debug.WeatherProxyOutput_body_childNodes = gwVar.debug.WeatherProxyOutput_body.childNodes;
+	
+	iterateXmlTagNames(gwVar.debug.WeatherProxyOutput_body);
+	
 	// 'request.body.Envelope.Body.LatLonListZipCodeResponse.listLatLonOut'
-	var forCodeReadability = findInNodeList(body, 'Envelope');
+	var forCodeReadability = findInNodeList(gwVar.debug.WeatherProxyOutput_body_123, 'Envelope');
 	gwVar.log.push('findInNodeList-Result-'+forCodeReadability);
 
 	// node type = element 
@@ -41,6 +57,9 @@ try {
 	// node type = element 
 	forCodeReadability = findInNodeList(forCodeReadability.childNodes, 'latLonList');
 	gwVar.xmlString = forCodeReadability.textContent;
+	
+	delete gwVar.log;
+	delete gwVar.debug;
 } catch(err) {
     gwVar.err = err;
 }
