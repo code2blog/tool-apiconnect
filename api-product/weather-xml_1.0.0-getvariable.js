@@ -22,25 +22,31 @@ function findInNodeList(nodeList, name){
 	return foundTheseNames;
 }
 
-// 'request.body.Envelope.Body.LatLonListZipCodeResponse.listLatLonOut'
-var forCodeReadability = findInNodeList(apim.getvariable('request.body'), 'Envelope');
-gwVar.log.push('findInNodeList-Result-'+forCodeReadability);
+try {
+	var body = apim.getvariable('request.body');
+	gwVar.body = body;
+	// 'request.body.Envelope.Body.LatLonListZipCodeResponse.listLatLonOut'
+	var forCodeReadability = findInNodeList(body, 'Envelope');
+	gwVar.log.push('findInNodeList-Result-'+forCodeReadability);
 
-// node type = element 
-forCodeReadability = findInNodeList(forCodeReadability.childNodes, 'Body');
-forCodeReadability = findInNodeList(forCodeReadability.childNodes, 'LatLonListZipCodeResponse');
-forCodeReadability = findInNodeList(forCodeReadability.childNodes, 'listLatLonOut');
-
-// node type = document
-forCodeReadability = findInNodeList(XML.parse(forCodeReadability.textContent).childNodes, 'dwml');
-
-// node type = element 
-forCodeReadability = findInNodeList(forCodeReadability.childNodes, 'latLonList');
-
-gwVar.xmlString = forCodeReadability.textContent;
+	// node type = element 
+	forCodeReadability = findInNodeList(forCodeReadability.childNodes, 'Body');
+	forCodeReadability = findInNodeList(forCodeReadability.childNodes, 'LatLonListZipCodeResponse');
+	forCodeReadability = findInNodeList(forCodeReadability.childNodes, 'listLatLonOut');
+	
+	var parsedXml = XML.parse(forCodeReadability.textContent).childNodes; 
+	// node type = document
+	forCodeReadability = findInNodeList(parsedXml, 'dwml');
+	
+	// node type = element 
+	forCodeReadability = findInNodeList(forCodeReadability.childNodes, 'latLonList');
+	gwVar.xmlString = forCodeReadability.textContent;
+} catch(err) {
+    gwVar.err = err;
+}
 
 apim.setvariable('message.headers.content-type', 'application/json', 'set');
-gwVar.log = null;
+// gwVar.log = null;
 apim.setvariable('message.body', JSON.stringify(gwVar), 'set');
 
 

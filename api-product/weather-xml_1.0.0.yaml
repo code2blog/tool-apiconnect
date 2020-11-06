@@ -11,7 +11,7 @@ basePath: "/graphical-weather"
 produces:
 - "application/json"
 consumes:
-- "text/xml"
+- "application/json"
 securityDefinitions:
   clientID:
     type: "apiKey"
@@ -41,6 +41,39 @@ x-ibm-configuration:
         - operations:
           - "LatLonListZipCode"
           execute:
+          - map:
+              title: "map"
+              inputs:
+                input:
+                  schema:
+                    $ref: "#/definitions/JsonLatLonListZipCodeInput"
+                  variable: "request.body"
+                  content: "application/json"
+              outputs:
+                output:
+                  schema:
+                    $ref: "#/definitions/LatLonListZipCodeInput"
+                  variable: "message.body"
+                  content: "text/xml"
+                headers:
+                  schema:
+                    type: "object"
+                    properties:
+                      SOAPAction:
+                        type: "string"
+                        name: "SOAPAction"
+                      Content-Type:
+                        type: "string"
+                        name: "Content-Type"
+                  variable: "message.headers"
+              actions:
+              - set: "output.Envelope.Body.LatLonListZipCode.zipCodeList"
+                from: "input.zipCodeList"
+              - set: "headers.SOAPAction"
+                value: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#LatLonListZipCode"
+              - set: "headers.Content-Type"
+                value: "text/xml"
+              version: "1.0.0"
           - proxy:
               title: "proxy"
               timeout: 60
@@ -49,7 +82,55 @@ x-ibm-configuration:
               cache-ttl: 900
               version: "1.0.0"
               target-url: "https://graphical.weather.gov/xml/SOAP_server/ndfdXMLserver.php"
-              output: "WeatherProxyOutput"
+          - gatewayscript:
+              title: "gatewayscript - getvar"
+              version: "1.0.0"
+              source: "var apic = require('./apim.custom.js');\r\n// use apim.getvariable('request.body')\
+                \ to fetch soap response from weather service\r\n// navigate through\
+                \ xml-nodelist, xml-element, to get textContent from xml = <dwml><latLonList>42.8018,-73.9281</latLonList></dwml>\"\
+                \r\n// use XML.parse() to convert textContent to xml objects\r\n//\
+                \ navigate xml-document, xml-element to get string value of latitude\
+                \ and longitude = 42.8018,-73.9281\r\n\r\n\r\nvar gwVar = {};\r\n\
+                gwVar.log = [];\r\n\r\nfunction findInNodeList(nodeList, name){\r\n\
+                \tvar foundTheseNames = [];\r\n\tfor (var i = 0; i < nodeList.length;\
+                \ i++){\r\n\t\tvar node = nodeList.item(i);\r\n\t\tvar foundThisName\
+                \ = node.localName;\r\n\t\tgwVar.log.push('findInNodeList-'+foundThisName);\r\
+                \n\t\tfoundTheseNames.push(foundThisName);\r\n\t\tif(name == foundThisName){\r\
+                \n\t\t\treturn node;\r\n\t\t}\t\r\n\t}\r\n\treturn foundTheseNames;\r\
+                \n}\r\n\r\ntry {\r\n\tvar body = apim.getvariable('request.body');\r\
+                \n\tgwVar.body = body;\r\n\t// 'request.body.Envelope.Body.LatLonListZipCodeResponse.listLatLonOut'\r\
+                \n\tvar forCodeReadability = findInNodeList(body, 'Envelope');\r\n\
+                \tgwVar.log.push('findInNodeList-Result-'+forCodeReadability);\r\n\
+                \r\n\t// node type = element \r\n\tforCodeReadability = findInNodeList(forCodeReadability.childNodes,\
+                \ 'Body');\r\n\tforCodeReadability = findInNodeList(forCodeReadability.childNodes,\
+                \ 'LatLonListZipCodeResponse');\r\n\tforCodeReadability = findInNodeList(forCodeReadability.childNodes,\
+                \ 'listLatLonOut');\r\n\t\r\n\tvar parsedXml = XML.parse(forCodeReadability.textContent).childNodes;\
+                \ \r\n\t// node type = document\r\n\tforCodeReadability = findInNodeList(parsedXml,\
+                \ 'dwml');\r\n\t\r\n\t// node type = element \r\n\tforCodeReadability\
+                \ = findInNodeList(forCodeReadability.childNodes, 'latLonList');\r\
+                \n\tgwVar.xmlString = forCodeReadability.textContent;\r\n} catch(err)\
+                \ {\r\n    gwVar.err = err;\r\n}\r\n\r\napim.setvariable('message.headers.content-type',\
+                \ 'application/json', 'set');\r\n// gwVar.log = null;\r\napim.setvariable('message.body',\
+                \ JSON.stringify(gwVar), 'set');\r\n\r\n\r\n"
+        - operations:
+          - "LatLonListCityNames"
+          execute:
+          - gatewayscript:
+              title: "gatewayscript - read input"
+              version: "1.0.0"
+              source: "apim.readInputAsXML(function (error, nodelist) {\r\n\tif (error)\
+                \ {\r\n\t\t//console.error('Error readAsJSON: ' + error);\r\n\t\t\r\
+                \n\t\t// Message ID in hex string format\r\n\t\terror.errorCode;\r\
+                \n\t\t\r\n        // English text message describing the failure that\
+                \ occurred\r\n        error.errorMessage;\r\n        \r\n        //\
+                \ English help text describing what the error is and the cause.\r\n\
+                \    \terror.errorDescription; \r\n\t\t\r\n        // English suggestion\
+                \ on how to resolve the error\r\n        error.errorSuggestion;\r\n\
+                \        \r\n    \t// Back trace listing the call stack leading up\
+                \ to the error occurrence.\r\n    \terror.stack;\r\n    \t\r\n   \
+                \ \tsession.output.write(error);\r\n    \tapim.output('application/json');\r\
+                \n\t\t\r\n\t} else {\r\n\t    \r\n\t    session.output.write(nodelist);\r\
+                \n\t    apim.output('application/xml');\r\n\t}\r\n});\r\n"
           - map:
               title: "map"
               inputs:
@@ -71,48 +152,6 @@ x-ibm-configuration:
               - set: "output.result"
                 from: "input.Envelope.Body.LatLonListZipCodeResponse.listLatLonOut"
               version: "1.0.0"
-        - operations:
-          - "LatLonListCityNames"
-          execute:
-          - gatewayscript:
-              title: "gatewayscript - read input"
-              version: "1.0.0"
-              source: "apim.readInputAsXML(function (error, nodelist) {\r\n\tif (error)\
-                \ {\r\n\t\t//console.error('Error readAsJSON: ' + error);\r\n\t\t\r\
-                \n\t\t// Message ID in hex string format\r\n\t\terror.errorCode;\r\
-                \n\t\t\r\n        // English text message describing the failure that\
-                \ occurred\r\n        error.errorMessage;\r\n        \r\n        //\
-                \ English help text describing what the error is and the cause.\r\n\
-                \    \terror.errorDescription; \r\n\t\t\r\n        // English suggestion\
-                \ on how to resolve the error\r\n        error.errorSuggestion;\r\n\
-                \        \r\n    \t// Back trace listing the call stack leading up\
-                \ to the error occurrence.\r\n    \terror.stack;\r\n    \t\r\n   \
-                \ \tsession.output.write(error);\r\n    \tapim.output('application/json');\r\
-                \n\t\t\r\n\t} else {\r\n\t    \r\n\t    session.output.write(nodelist);\r\
-                \n\t    apim.output('application/xml');\r\n\t}\r\n});\r\n"
-          - gatewayscript:
-              title: "gatewayscript - getvar"
-              version: "1.0.0"
-              source: "var apic = require('./apim.custom.js');\r\n\r\nvar gwVar =\
-                \ {};\r\ngwVar.log = [];\r\n\r\nfunction findInNodeList(nodeList,\
-                \ name){\r\n\tvar foundTheseNames = [];\r\n\tfor (var i = 0; i < nodeList.length;\
-                \ i++){\r\n\t\tvar node = nodeList.item(i);\r\n\t\tvar foundThisName\
-                \ = node.localName;\r\n\t\tgwVar.log.push('findInNodeList-'+foundThisName);\r\
-                \n\t\tfoundTheseNames.push(foundThisName);\r\n\t\tif(name == foundThisName){\r\
-                \n\t\t\treturn node;\r\n\t\t}\t\r\n\t}\r\n\treturn foundTheseNames;\r\
-                \n}\r\n\r\n// 'request.body.Envelope.Body.LatLonListZipCodeResponse.listLatLonOut'\r\
-                \nvar forCodeReadability = findInNodeList(apim.getvariable('request.body'),\
-                \ 'Envelope');\r\ngwVar.log.push('findInNodeList-Result-'+forCodeReadability);\r\
-                \n\r\n// node type = element \r\nforCodeReadability = findInNodeList(forCodeReadability.childNodes,\
-                \ 'Body');\r\nforCodeReadability = findInNodeList(forCodeReadability.childNodes,\
-                \ 'LatLonListZipCodeResponse');\r\nforCodeReadability = findInNodeList(forCodeReadability.childNodes,\
-                \ 'listLatLonOut');\r\n\r\n// node type = document\r\nforCodeReadability\
-                \ = findInNodeList(XML.parse(forCodeReadability.textContent).childNodes,\
-                \ 'dwml');\r\n\r\n// node type = element \r\nforCodeReadability =\
-                \ findInNodeList(forCodeReadability.childNodes, 'latLonList');\r\n\
-                \r\ngwVar.xmlString = forCodeReadability.textContent;\r\n\r\napim.setvariable('message.headers.content-type',\
-                \ 'application/json', 'set');\r\n// gwVar.log = null;\r\napim.setvariable('message.body',\
-                \ JSON.stringify(gwVar), 'set');\r\n\r\n\r\n"
         otherwise: []
         version: "1.0.0"
   x-ibm-apiconnect-wsdl:
@@ -302,17 +341,17 @@ paths:
       x-ibm-soap:
         soap-action: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#LatLonListZipCode"
         soap-operation: "{https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl}LatLonListZipCode"
-      parameters:
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/LatLonListZipCodeInput"
       responses:
         default:
           description: ""
           schema:
             $ref: "#/definitions/LatLonListZipCodeOutput"
+      parameters:
+      - name: "zipCode"
+        required: true
+        in: "body"
+        schema:
+          $ref: "#/definitions/JsonLatLonListZipCodeInput"
   /LatLonListCityNames:
     post:
       summary: "Operation LatLonListCityNames"
@@ -3050,7 +3089,7 @@ definitions:
         type: "string"
     example: "\n<tns:NDFDgenByDayLatLonListResponse xmlns:tns=\"https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl\"\
       >\n <tns:dwmlByDayOut>string</tns:dwmlByDayOut>\n</tns:NDFDgenByDayLatLonListResponse>"
-  JsonLatLonListZipCode:
+  JsonLatLonListZipCodeInput:
     properties:
       zipCodeList:
         type: "string"

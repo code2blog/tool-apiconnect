@@ -11,5 +11,6 @@ api/say-hello_1.0.0
 
 api/weather-xml_1.0.0	
 	wx1 proxy soap service using apiconnect
+	wx2 expose soap service using json input and provide json output
 	
 </pre>
