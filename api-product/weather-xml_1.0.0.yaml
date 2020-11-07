@@ -82,6 +82,29 @@ x-ibm-configuration:
               cache-ttl: 900
               version: "1.0.0"
               target-url: "https://graphical.weather.gov/xml/SOAP_server/ndfdXMLserver.php"
+              output: "WeatherProxyOutput"
+          - map:
+              title: "map"
+              inputs:
+                input:
+                  schema:
+                    $ref: "#/definitions/LatLonListZipCodeOutput"
+                  variable: "WeatherProxyOutput.body"
+                  content: "text/xml"
+              outputs:
+                output:
+                  schema:
+                    type: "object"
+                    properties:
+                      result:
+                        type: "string"
+                        name: "result"
+                  variable: "message.body"
+                  content: "application/json"
+              actions:
+              - set: "output.result"
+                from: "input.Envelope.Body.LatLonListZipCodeResponse.listLatLonOut"
+              version: "1.0.0"
           - gatewayscript:
               title: "gatewayscript - getvar"
               version: "1.0.0"
@@ -97,19 +120,14 @@ x-ibm-configuration:
                 \ = node.localName;\r\n\t\tgwVar.log.push('findInNodeList-'+foundThisName);\r\
                 \n\t\tfoundTheseNames.push(foundThisName);\r\n\t\tif(name == foundThisName){\r\
                 \n\t\t\treturn node;\r\n\t\t}\t\r\n\t}\r\n\treturn foundTheseNames;\r\
-                \n}\r\n\r\ntry {\r\n\tvar body = apim.getvariable('request.body');\r\
-                \n\tgwVar.body = body;\r\n\t// 'request.body.Envelope.Body.LatLonListZipCodeResponse.listLatLonOut'\r\
-                \n\tvar forCodeReadability = findInNodeList(body, 'Envelope');\r\n\
-                \tgwVar.log.push('findInNodeList-Result-'+forCodeReadability);\r\n\
-                \r\n\t// node type = element \r\n\tforCodeReadability = findInNodeList(forCodeReadability.childNodes,\
-                \ 'Body');\r\n\tforCodeReadability = findInNodeList(forCodeReadability.childNodes,\
-                \ 'LatLonListZipCodeResponse');\r\n\tforCodeReadability = findInNodeList(forCodeReadability.childNodes,\
-                \ 'listLatLonOut');\r\n\t\r\n\tvar parsedXml = XML.parse(forCodeReadability.textContent).childNodes;\
-                \ \r\n\t// node type = document\r\n\tforCodeReadability = findInNodeList(parsedXml,\
+                \n}\r\n\r\ntry {\r\n\tgwVar.debug = {};\r\n\tgwVar.debug.body = apim.getvariable('message.body');\r\
+                \n\t\r\n\tvar parsedXml = XML.parse(gwVar.debug.body.result).childNodes;\
+                \ \r\n\t// node type = document\r\n\tvar forCodeReadability = findInNodeList(parsedXml,\
                 \ 'dwml');\r\n\t\r\n\t// node type = element \r\n\tforCodeReadability\
                 \ = findInNodeList(forCodeReadability.childNodes, 'latLonList');\r\
-                \n\tgwVar.xmlString = forCodeReadability.textContent;\r\n} catch(err)\
-                \ {\r\n    gwVar.err = err;\r\n}\r\n\r\napim.setvariable('message.headers.content-type',\
+                \n\tgwVar.latLon = forCodeReadability.textContent;\r\n\t\r\n\tdelete\
+                \ gwVar.log;\r\n\tdelete gwVar.debug;\r\n} catch(err) {\r\n    gwVar.err\
+                \ = err;\r\n}\r\n\r\napim.setvariable('message.headers.content-type',\
                 \ 'application/json', 'set');\r\n// gwVar.log = null;\r\napim.setvariable('message.body',\
                 \ JSON.stringify(gwVar), 'set');\r\n\r\n\r\n"
         - operations:
@@ -131,27 +149,6 @@ x-ibm-configuration:
                 \ \tsession.output.write(error);\r\n    \tapim.output('application/json');\r\
                 \n\t\t\r\n\t} else {\r\n\t    \r\n\t    session.output.write(nodelist);\r\
                 \n\t    apim.output('application/xml');\r\n\t}\r\n});\r\n"
-          - map:
-              title: "map"
-              inputs:
-                input:
-                  schema:
-                    $ref: "#/definitions/LatLonListZipCodeOutput"
-                  variable: "request.body"
-              outputs:
-                output:
-                  schema:
-                    type: "object"
-                    properties:
-                      result:
-                        type: "string"
-                        name: "result"
-                  variable: "message.body"
-                  content: "application/json"
-              actions:
-              - set: "output.result"
-                from: "input.Envelope.Body.LatLonListZipCodeResponse.listLatLonOut"
-              version: "1.0.0"
         otherwise: []
         version: "1.0.0"
   x-ibm-apiconnect-wsdl:

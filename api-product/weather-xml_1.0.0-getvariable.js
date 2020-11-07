@@ -22,41 +22,17 @@ function findInNodeList(nodeList, name){
 	return foundTheseNames;
 }
 
-function iterateXmlTagNames(n) { // n is a Node 
-	if (n.nodeType == 1) { // Check if n is an Element 
-		gwVar.log.push(n.nodeName); 
-	}
-	var children = n.childNodes;  
-	for(var i=0; i < children.length; i++) { 
-		iterateXmlTagNames(children[i]);  // Recurse = 
-	}
- }
-
 try {
 	gwVar.debug = {};
-	gwVar.debug.body = apim.getvariable('request.body');
-	gwVar.debug.WeatherProxyOutput = apim.getvariable('WeatherProxyOutput');;
-	gwVar.debug.WeatherProxyOutput_body = apim.getvariable('WeatherProxyOutput.body');
-	gwVar.debug.WeatherProxyOutput_body_childNodes = gwVar.debug.WeatherProxyOutput_body.childNodes;
+	gwVar.debug.body = apim.getvariable('message.body');
 	
-	iterateXmlTagNames(gwVar.debug.WeatherProxyOutput_body);
-	
-	// 'request.body.Envelope.Body.LatLonListZipCodeResponse.listLatLonOut'
-	var forCodeReadability = findInNodeList(gwVar.debug.WeatherProxyOutput_body_123, 'Envelope');
-	gwVar.log.push('findInNodeList-Result-'+forCodeReadability);
-
-	// node type = element 
-	forCodeReadability = findInNodeList(forCodeReadability.childNodes, 'Body');
-	forCodeReadability = findInNodeList(forCodeReadability.childNodes, 'LatLonListZipCodeResponse');
-	forCodeReadability = findInNodeList(forCodeReadability.childNodes, 'listLatLonOut');
-	
-	var parsedXml = XML.parse(forCodeReadability.textContent).childNodes; 
+	var parsedXml = XML.parse(gwVar.debug.body.result).childNodes; 
 	// node type = document
-	forCodeReadability = findInNodeList(parsedXml, 'dwml');
+	var forCodeReadability = findInNodeList(parsedXml, 'dwml');
 	
 	// node type = element 
 	forCodeReadability = findInNodeList(forCodeReadability.childNodes, 'latLonList');
-	gwVar.xmlString = forCodeReadability.textContent;
+	gwVar.latLon = forCodeReadability.textContent;
 	
 	delete gwVar.log;
 	delete gwVar.debug;
