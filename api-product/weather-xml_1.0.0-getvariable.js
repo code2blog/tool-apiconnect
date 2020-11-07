@@ -41,7 +41,6 @@ try {
 }
 
 apim.setvariable('message.headers.content-type', 'application/json', 'set');
-// gwVar.log = null;
 apim.setvariable('message.body', JSON.stringify(gwVar), 'set');
 
 
