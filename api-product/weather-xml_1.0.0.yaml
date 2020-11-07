@@ -55,24 +55,9 @@ x-ibm-configuration:
                     $ref: "#/definitions/LatLonListZipCodeInput"
                   variable: "message.body"
                   content: "text/xml"
-                headers:
-                  schema:
-                    type: "object"
-                    properties:
-                      SOAPAction:
-                        type: "string"
-                        name: "SOAPAction"
-                      Content-Type:
-                        type: "string"
-                        name: "Content-Type"
-                  variable: "message.headers"
               actions:
               - set: "output.Envelope.Body.LatLonListZipCode.zipCodeList"
                 from: "input.zipCodeList"
-              - set: "headers.SOAPAction"
-                value: "https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#LatLonListZipCode"
-              - set: "headers.Content-Type"
-                value: "text/xml"
               version: "1.0.0"
           - proxy:
               title: "proxy"
