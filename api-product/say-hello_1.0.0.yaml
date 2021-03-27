@@ -29,27 +29,10 @@ x-ibm-configuration:
     enabled: true
   assembly:
     execute:
-    - set-variable:
-        title: "set-variable hs256-key"
-        actions:
-        - set: "hs256-key"
-          value: "{     \"kty\": \"oct\",     \"use\": \"sig\",     \"kid\": \"code2blog\"\
-            ,     \"k\": \"rJq2TR03XXr96cMFd4r0x64ORV7v3-8-C6DF4j2EPSJQqO7LOmU9Jqd9_Jgdkj6dtcAq48W1RI2MDLKAa31DAX4MnW-ARGDi_A8HbEvPYxDGnfW0RPLDwws24JotlB0A0LoO-xGaCGiAEvk8JtEPmyzGU4qRwhJ-xuu4aHvs8dIAZWDskG34jvpPhydTN3DFye0b_78Ts27VARBRx2LvWrJnf3B_s_Hh_YJkyzGnXUnH8OXOFDvittXCofLbK3JsjKMwgOvIW67mLGcTjTMOgQVppfIE8Xnjsnt5D-khgnsdX2nmUz2L0cF9xAjk9NGrFz9vwG0d7mn2eYMXizM-5Q\"\
-            ,     \"alg\": \"HS256\" }"
+    - validate:
+        title: "validate"
         version: "1.0.0"
-        description: "set jwk"
-    - jwt-generate:
-        title: "jwt-generate"
-        iss-claim: "request.headers.iss-claim"
-        exp-claim: 3600
-        version: "1.0.0"
-        jti-claim: false
-        sub-claim: ""
-        aud-claim: "request.headers.aud-claim"
-        jws-alg: "HS256"
-        jwt: "generated-jwt"
-        jws-jwk: "hs256-key"
-        description: ""
+        definition: "request"
     - map:
         title: "map"
         inputs:
@@ -97,10 +80,31 @@ paths:
       - "application/json"
       produces:
       - "application/json"
-    parameters:
-    - $ref: "#/parameters/iss-claim"
-    - $ref: "#/parameters/aud-claim"
-definitions: {}
+    post:
+      responses:
+        200:
+          description: "200 OK"
+      parameters:
+      - name: "calc"
+        required: true
+        in: "body"
+        schema:
+          $ref: "#/definitions/calc"
+definitions:
+  calc:
+    properties:
+      intA:
+        type: "integer"
+        format: "int32"
+        example: "2"
+      intB:
+        type: "integer"
+        format: "int32"
+        example: "3"
+    additionalProperties: false
+    required:
+    - "intA"
+    - "intB"
 tags: []
 consumes:
 - "application/json"
